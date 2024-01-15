@@ -29,18 +29,13 @@
     },
     "type": "module",
     "license": "MIT",
-    "dependencies": {
-        "@types/inquirer": "^9.0.7",
+    "devDependencies": {
         "@types/node": "^20.10.7",
         "@types/prompts": "^2.4.9",
         "@vercel/ncc": "^0.38.1",
         "child_process": "^1.0.0",
-        "create-next-app": "^14.0.4",
-        "inquirer": "^9.2.12",
         "picocolors": "^1.0.0",
         "prompts": "^2.4.2",
-        "tsc": "^2.0.4",
-        "tsx": "^4.7.0",
         "typescript": "^5.3.3"
     }
 }
