@@ -1,7 +1,7 @@
 {
-    "name": "create-next-template",
-    "version": "1.0.0",
-    "description": "",
+    "name": "create-template-next",
+    "version": "0.0.1",
+    "description": "create nextjs app with various prompts",
     "bin": {
         "create-next-template": "./dist/index.js"
     },
@@ -13,8 +13,20 @@
     "files": [
         "dist"
     ],
-    "keywords": [],
-    "author": "",
+    "keywords": [
+        "nextjs",
+        "template",
+        "create-next-app"
+    ],
+    "bugs": {
+        "url": "https://github.com/tosaken1116/nextjs-app-templates"
+    },
+    "homepage": "https://github.com/tosaken1116/nextjs-app-templates#readme",
+    "author": "tosaken1116 <tosaken.dev@gmail.com> (http://github.com/tosaken1116)",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/tosaken1116/nextjs-app-templates.git"
+    },
     "type": "module",
     "license": "MIT",
     "dependencies": {
