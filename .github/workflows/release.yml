@@ -14,12 +14,12 @@ jobs:
         permissions: write-all
         runs-on: ubuntu-latest
         steps:
-            - uses: google-github-actions/release-please-action@v3
+            - uses: google-github-actions/release-please-action@v4
               id: release
               with:
                   release-type: node
-                  skip-github-pull-request: true
-                  manifest-file: .release-please-manifest.json
+                  bump-minor-pre-major: true
+                  bump-patch-for-minor-pre-major: true
                   changelog-types: '[
                       {"type": "feat!", "section": "💥 Breaking"},
                       {"type": "feat", "section": "🌈 Features"},
