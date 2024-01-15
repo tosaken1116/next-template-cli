@@ -1,12 +1,15 @@
 {
     "$schema": "https://biomejs.dev/schemas/1.5.1/schema.json",
     "organizeImports": {
-        "enabled": false
+        "enabled": true
     },
     "linter": {
         "enabled": true,
         "rules": {
-            "recommended": true
+            "recommended": true,
+            "correctness": {
+                "useHookAtTopLevel": "error"
+            }
         }
     }
 }
