@@ -14,24 +14,8 @@ jobs:
         permissions: write-all
         runs-on: ubuntu-latest
         steps:
-            - uses: google-github-actions/release-please-action@v3
+            - uses: google-github-actions/release-please-action@v4
               id: release
-              with:
-                  release-type: node
-                  bump-minor-pre-major: true
-                  bump-patch-for-minor-pre-major: true
-                  changelog-types: '[
-                      {"type": "feat!", "section": "💥 Breaking"},
-                      {"type": "feat", "section": "🌈 Features"},
-                      {"type": "fix", "section": "🐛Bug Fixes"},
-                      {"type": "chore", "hidden": true},
-                      {"type": "docs", "section": "📝 Miscellaneous"},
-                      {"type": "style", "section": "📝 Miscellaneous"},
-                      {"type": "refactor", "section": "📝 Miscellaneous"},
-                      {"type": "perf", "section": "📝 Miscellaneous"},
-                      {"type": "test", "section": "📝 Miscellaneous"}]'
-              env:
-                  GITHUB_TOKEN: ${{ secrets.PAT }}
               # The logic below handles the npm publication:
             - uses: actions/checkout@v4
               # these if statements ensure that a publication only occurs when
