@@ -16,6 +16,10 @@ jobs:
         steps:
             - uses: google-github-actions/release-please-action@v4
               id: release
+              with:
+                  token: ${{ secrets.PAT }}
+                  config-file: release-please-config.json
+                  manifest-file: .release-please-manifest.json
               # The logic below handles the npm publication:
             - uses: actions/checkout@v4
               # these if statements ensure that a publication only occurs when
