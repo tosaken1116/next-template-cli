@@ -1,4 +1,4 @@
-// create-my-next-app.ts
+#!/usr/bin/env node
 import { spawn } from "child_process";
 import prompts from "prompts";
 import pkg from "picocolors";
@@ -7,9 +7,7 @@ import path from "path";
 import { log } from "./helper/log";
 import { exit } from "process";
 const { blue, green } = pkg;
-// メイン関数
 async function main() {
-    // inquirerを使用してユーザー入力を取得
     const { projectName } = await prompts({
         type: "text",
         name: "projectName",
@@ -123,7 +121,6 @@ async function main() {
             { title: "bun", value: "bun" },
         ],
     });
-    // create-next-app コマンドのオプションを設定
     const commandOptions = ["create-next-app", projectName];
     if (typescript) {
         commandOptions.push("--typescript");
