@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.6](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.5...create-template-next-v0.0.6) (2024-01-16)
+
+
+### Bug Fixes
+
+* change to enable to exec with npx ([efdaaf8](https://github.com/tosaken1116/next-template-cli/commit/efdaaf8a143ec8aab9d7a5050d35d9bc5cea042e))
+
 ## [0.0.5](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.4...create-template-next-v0.0.5) (2024-01-16)
 
 
