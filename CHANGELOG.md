@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.4](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.3...create-template-next-v0.0.4) (2024-01-16)
+
+
+### Bug Fixes
+
+* set engine node version ([8c2043f](https://github.com/tosaken1116/next-template-cli/commit/8c2043f4cfe04837aa09f71484f63206884b8817))
+
 ## [0.0.3](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.2...create-template-next-v0.0.3) (2024-01-16)
 
 
