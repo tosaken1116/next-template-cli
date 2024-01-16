@@ -36,7 +36,7 @@ export const generator = async ({
             );
         }
         await copyFiles(
-            getTemplate({ type, tool: genTool }),
+            getTemplate({ type, tool: genTool, size }),
             `${projectRoot}/_templates`
         );
         await copyFiles(
