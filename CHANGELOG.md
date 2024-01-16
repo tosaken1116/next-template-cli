@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.5](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.4...create-template-next-v0.0.5) (2024-01-16)
+
+
+### Bug Fixes
+
+* fix bin command title ([e5f69d2](https://github.com/tosaken1116/next-template-cli/commit/e5f69d2896f156590a94660469a58e1d52711ca7))
+
 ## [0.0.4](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.3...create-template-next-v0.0.4) (2024-01-16)
 
 
