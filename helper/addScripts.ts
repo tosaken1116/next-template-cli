@@ -108,8 +108,11 @@ export const addScripts = ({
     if (needStorybook) {
         tools.push("storybook");
     }
-    const addScripts = tools.map((tool) => scripts[tool][size]);
-
+    const addScripts = tools
+        .map((tool) => scripts[tool][size])
+        .reduce((acc, record) => {
+            return { ...acc, ...record };
+        }, {});
     const packageJsonPath = path.join(projectRoot, "package.json");
     const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf8"));
 
