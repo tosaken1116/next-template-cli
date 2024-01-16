@@ -19,13 +19,13 @@
         "create-next-app"
     ],
     "bugs": {
-        "url": "https://github.com/tosaken1116/nextjs-app-templates"
+        "url": "https://github.com/tosaken1116/next-template-cli"
     },
-    "homepage": "https://github.com/tosaken1116/nextjs-app-templates#readme",
+    "homepage": "https://github.com/tosaken1116/next-template-cli#readme",
     "author": "tosaken1116 <tosaken.dev@gmail.com> (http://github.com/tosaken1116)",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/tosaken1116/nextjs-app-templates.git"
+        "url": "git+https://github.com/tosaken1116/next-template-cli.git"
     },
     "type": "module",
     "license": "MIT",
