@@ -1,6 +1,6 @@
 {
     "name": "create-template-next",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "create nextjs app with various prompts",
     "bin": {
         "create-next-template": "./dist/index.js"
