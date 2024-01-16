@@ -1,8 +1,6 @@
 ---
-to: "<%= gen_files.includes('Empty') ? `src/components/model/${domains}/components/${name}/presentations/empty.tsx` : null %>"
+to: "<%= gen_files.includes('Empty') ? `src/components/model/${domains}/components/${name}/presentations/empty.jsx` : null %>"
 ---
-import type { FC } from 'react';
-
-export const <%= name %>EmptyPresentation:FC = () => {
+export const <%= name %>EmptyPresentation = () => {
   return <>this is <%= name %> empty presentation</>;
 };

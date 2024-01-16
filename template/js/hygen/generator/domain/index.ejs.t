@@ -1,8 +1,6 @@
 ---
-to: "<%= `src/components/model/${name}/index.ts` %>"
+to: "<%= `src/components/model/${name}/index.js` %>"
 ---
 export * from "./components"
 
 export * from "./repository"
-
-export * from "./type"

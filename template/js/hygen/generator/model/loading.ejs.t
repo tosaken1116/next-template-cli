@@ -1,8 +1,6 @@
 ---
-to: "<%= gen_files.includes('Loading') ? `src/components/model/${domains}/components/${name}/presentations/loading.tsx` : null %>"
+to: "<%= gen_files.includes('Loading') ? `src/components/model/${domains}/components/${name}/presentations/loading.jsx` : null %>"
 ---
-import type { FC } from 'react';
-
-export const <%= name %>LoadingPresentation:FC = () => {
+export const <%= name %>LoadingPresentation = () => {
   return <>this is <%= name %> component</>;
 };

@@ -1,11 +1,9 @@
 ---
-to: src/components/ui/<%= name %>/index.stories.tsx
+to: src/components/ui/<%= name %>/index.stories.jsx
 ---
 import { <%= name %> } from '.';
 
-import type { Meta, StoryObj } from '@storybook/react';
-
-const meta: Meta<typeof <%= name %>> = {
+const meta = {
   component: <%= name %>,
   parameters: {
     layout: 'centered',
@@ -15,8 +13,6 @@ const meta: Meta<typeof <%= name %>> = {
 
 export default meta;
 
-type Story = StoryObj<typeof <%= name %>>;
-
-export const Default: Story = {
+export const Default = {
   args: {},
 };

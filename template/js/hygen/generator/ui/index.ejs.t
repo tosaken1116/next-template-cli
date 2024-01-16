@@ -1,8 +1,6 @@
 ---
-to: "<%= `src/components/ui/${name}/index.tsx` %>"
+to: "<%= `src/components/ui/${name}/index.jsx` %>"
 ---
-type Props = {};
-
-export const <%= name %>:React.FC<Props> = ({}) => {
+export const <%= name %> = ({}) => {
   return <>this is ui of <%= name %> </>;
 };

@@ -1,7 +1,6 @@
 ---
-to: "<%=  `src/components/model/${domains}/components/${name}/index.tsx` %>"
+to: "<%=  `src/components/model/${domains}/components/${name}/index.jsx` %>"
 ---
-import type { FC } from 'react';
 import { Suspense } from 'react';
 
 import { <%= name %>Presentation } from './presentations';
@@ -9,9 +8,8 @@ import { <%= name %>Presentation } from './presentations';
 <%})%>
 import { ErrorBoundary } from '@/libs/ErrorBoundary';
 
-<% if (have_props) { %>type Props = {};<% } %>
 
-export const <%= name %>: FC<% if (have_props) { %><Props><% } %> = (<% if (have_props) { %>{}<% } %>) => (
+export const <%= name %>= (<% if (have_props) { %>{}<% } %>) => (
   <% if (gen_files.includes("Error")) { %><ErrorBoundary fallback={<<%= name %>ErrorPresentation />}><% } %>
     <% if (gen_files.includes("Loading")) { %><Suspense fallback={<<%= name %>LoadingPresentation />}><% } %>
       <<%= name %>Presentation />

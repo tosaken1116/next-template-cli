@@ -1,8 +1,6 @@
 ---
-to: "<%= gen_files.includes('Error') ? `src/components/model/${domains}/components/${name}/presentations/error.tsx` : null %>"
+to: "<%= gen_files.includes('Error') ? `src/components/model/${domains}/components/${name}/presentations/error.jsx` : null %>"
 ---
-import type { FC } from 'react';
-
-export const <%= name %>ErrorPresentation:FC = () => {
+export const <%= name %>ErrorPresentation = () => {
   return <>this is <%= name %> error presentation</>;
 };

@@ -1,8 +1,8 @@
 ---
-to: "<%= `src/app/${url}/page.tsx` %>"
+to: "<%= `src/app/${url}/page.jsx` %>"
 ---
 import { Screen } from '@/components/page/<%= name %>'
 
-const <%= name %>:React.FC = () => <Screen />;
+const <%= name %> = () => <Screen />;
 
 export default <%= name %>;
