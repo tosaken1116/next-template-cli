@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.0.3](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.2...create-template-next-v0.0.3) (2024-01-16)
+
+
+### Features
+
+* change template generator function with size custom ([f30d11b](https://github.com/tosaken1116/next-template-cli/commit/f30d11ba3a71b5c0e16fef97dff509f98c7d8897))
+* change template scripts ([fabc86e](https://github.com/tosaken1116/next-template-cli/commit/fabc86eb2b52af5b9b02b16a1365d3f7491d25f7))
+* hygen template with project size ([e118389](https://github.com/tosaken1116/next-template-cli/commit/e1183899929d198bb4d407f0d287026bad7d7f20))
+
 ## [0.0.2](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.1...create-template-next-v0.0.2) (2024-01-16)
 
 
