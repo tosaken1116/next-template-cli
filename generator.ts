@@ -35,10 +35,14 @@ export const generator = async ({
                 `${projectRoot}/.storybook`
             );
         }
-        await copyFiles(
-            getTemplate({ type, tool: genTool, size }),
-            `${projectRoot}/_templates`
-        );
+        if (genTool) {
+            await copyFiles(
+                getTemplate({ type, tool: genTool, size }),
+                `${projectRoot}/${
+                    genTool == "hygen" ? "_templates" : ".scaffdog"
+                }`
+            );
+        }
         await copyFiles(
             getTemplate({ tool: lintTool, size }),
             `${projectRoot}`
