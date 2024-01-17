@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.10](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.9...create-template-next-v0.0.10) (2024-01-17)
+
+
+### Features
+
+* add remove non use syntax function ([acba2b6](https://github.com/tosaken1116/next-template-cli/commit/acba2b6d8c43a79e3eaa619e70b24207112f336a))
+
 ## [0.0.9](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.8...create-template-next-v0.0.9) (2024-01-17)
 
 
