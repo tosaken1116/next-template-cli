@@ -64,7 +64,7 @@ export const installPackages = async ({
     const stop = log(`installing packages...`);
     const { exec } = await import("child_process");
 
-    const command = `${packageManager} i ${addPackages.join(" ")}`;
+    const command = `${packageManager} i -D ${addPackages.join(" ")}`;
     const child = exec(command, {
         cwd: path.resolve(projectRoot),
     });
