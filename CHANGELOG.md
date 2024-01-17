@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.0.7](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.6...create-template-next-v0.0.7) (2024-01-17)
+
+
+### Features
+
+* add hygen js template ([4e088dc](https://github.com/tosaken1116/next-template-cli/commit/4e088dca7417d4764ea6aea8842f1e4454e12050))
+* add scaffdog template ([0be37b8](https://github.com/tosaken1116/next-template-cli/commit/0be37b8111cf910f3ada9a1aa766abdce2263200))
+* support scaffdog template generate ([8dab7da](https://github.com/tosaken1116/next-template-cli/commit/8dab7dabf2aba05f9818b1b80672f690929ed07f))
+
+
+### Bug Fixes
+
+* addScript function package script bug ([da1ffdf](https://github.com/tosaken1116/next-template-cli/commit/da1ffdf0ee0817588c83648bc7242420290bf6d6))
+* change hygen template ([32490da](https://github.com/tosaken1116/next-template-cli/commit/32490dad730d58f4183cdb9b14688ef30ad228bf))
+* jest config need ts-node ([9d5da44](https://github.com/tosaken1116/next-template-cli/commit/9d5da44020a6268d7e2e27aafaeab15486189798))
+* scaffdog generate scripts ([c6356d1](https://github.com/tosaken1116/next-template-cli/commit/c6356d17d2cbb333d60c5ab431e2e11f041eb71b))
+
 ## [0.0.6](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.5...create-template-next-v0.0.6) (2024-01-16)
 
 
