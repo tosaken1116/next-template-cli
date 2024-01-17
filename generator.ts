@@ -5,6 +5,7 @@ import { copyFiles } from "./helper/copy";
 import { installPackages } from "./helper/installPackages";
 import { addScripts } from "./helper/addScripts";
 import { dirNameFixer } from "./helper/dirNameFixer";
+import { genTemplateDirs } from "./helper/genTemplateDirs";
 
 export type GenerateConfigType = {
     projectRoot: string;
@@ -96,6 +97,18 @@ export const generator = async ({
                 isSrcDir,
             });
         }
+        genTemplateDirs({
+            type,
+            testTool,
+            lintTool,
+            size,
+            genTool,
+            needStorybook,
+            packageManager,
+            projectRoot,
+            isAppRouter,
+            isSrcDir,
+        });
     } catch (err) {
         console.log(err);
     }
