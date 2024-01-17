@@ -1,8 +1,11 @@
 ---
 to: "<%= `src/components/model/${name}/index.ts` %>"
 ---
-export * from "./components"
+export type * from "./type";
 
-export * from "./repository"
+// NOTE: uncomment when components are created
+// export * from "./components";
 
-export * from "./type"
+export * from "./repository";
+
+export * from "./usecase";

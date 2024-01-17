@@ -1,5 +1,5 @@
 ---
-to: src/components/model/<%= domains %>/components/<%= name %>/index.stories.tsx
+to: src/components/domains/<%= domains %>/components/<%= name %>/index.stories.tsx
 ---
 
 import { <%= name %>Presentation  } from './presentations';
