@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.0.8](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.7...create-template-next-v0.0.8) (2024-01-17)
+
+
+### Features
+
+* add dirNameFixer ([aa5fa12](https://github.com/tosaken1116/next-template-cli/commit/aa5fa121952344a3ff89e1db0bd4ae76648884fe))
+
+
+### Bug Fixes
+
+* change install script to install devDepend ([2477888](https://github.com/tosaken1116/next-template-cli/commit/2477888d3b32245cbc0641316149ee86013d4b6c))
+* remove skip pr option from  release workflow ([765b376](https://github.com/tosaken1116/next-template-cli/commit/765b3765f80e671367396528cf1e47dd27bab922))
+
 ## [0.0.7](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.6...create-template-next-v0.0.7) (2024-01-17)
 
 
