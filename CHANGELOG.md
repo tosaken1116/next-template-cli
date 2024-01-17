@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.9](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.8...create-template-next-v0.0.9) (2024-01-17)
+
+
+### Features
+
+* add gen dir function ([5b77c04](https://github.com/tosaken1116/next-template-cli/commit/5b77c0490f3da2827d3e488dff8ada2f68b1dac9))
+* add install react error boundary with project size ([27e0cb1](https://github.com/tosaken1116/next-template-cli/commit/27e0cb178a5d72aa075f115d03988a0733e64931))
+
 ## [0.0.8](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.7...create-template-next-v0.0.8) (2024-01-17)
 
 
