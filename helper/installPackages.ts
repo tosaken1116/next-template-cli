@@ -35,7 +35,7 @@ export const tsPackages = {
     biome: [],
     eslint: ["@typescript-eslint/eslint-plugin", "@typescript-eslint/parser"],
     hygen: [],
-    jest: ["@types/jest", "ts-jest"],
+    jest: ["@types/jest", "ts-jest", "ts-node"],
     vitest: [],
     scaffdog: [],
     storybook: [],
