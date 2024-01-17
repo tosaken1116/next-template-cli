@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.12](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.11...create-template-next-v0.0.12) (2024-01-17)
+
+
+### Bug Fixes
+
+* package install with execSync ([cb8ce9a](https://github.com/tosaken1116/next-template-cli/commit/cb8ce9a45899875ba5e212649b17f03f116b94ca))
+
 ## [0.0.11](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.10...create-template-next-v0.0.11) (2024-01-17)
 
 
