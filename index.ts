@@ -170,6 +170,8 @@ async function main() {
         genTool,
         size: projectSize,
         packageManager: packageTool,
+        isAppRouter: appRouter,
+        isSrcDir: srcDir,
     });
     process.stdout.write("\x1Bc");
     console.log(green("Done!"));

@@ -4,6 +4,7 @@ import { getTemplate } from "./helper/getTemplate";
 import { copyFiles } from "./helper/copy";
 import { installPackages } from "./helper/installPackages";
 import { addScripts } from "./helper/addScripts";
+import { dirNameFixer } from "./helper/dirNameFixer";
 
 export type GenerateConfigType = {
     projectRoot: string;
@@ -14,6 +15,8 @@ export type GenerateConfigType = {
     genTool: "hygen" | "scaffdog";
     size: "small" | "medium" | "large";
     packageManager: "npm" | "yarn" | "pnpm" | "bun";
+    isAppRouter: boolean;
+    isSrcDir: boolean;
 };
 const __filename = fileURLToPath(import.meta.url);
 
@@ -27,6 +30,8 @@ export const generator = async ({
     testTool,
     size,
     packageManager,
+    isAppRouter,
+    isSrcDir,
 }: GenerateConfigType) => {
     try {
         if (needStorybook) {
@@ -61,6 +66,8 @@ export const generator = async ({
             needStorybook,
             packageManager,
             projectRoot,
+            isAppRouter,
+            isSrcDir,
         });
 
         addScripts({
@@ -72,7 +79,23 @@ export const generator = async ({
             needStorybook,
             packageManager,
             projectRoot,
+            isAppRouter,
+            isSrcDir,
         });
+        if (!isAppRouter || !isSrcDir) {
+            dirNameFixer({
+                type,
+                testTool,
+                lintTool,
+                size,
+                genTool,
+                needStorybook,
+                packageManager,
+                projectRoot,
+                isAppRouter,
+                isSrcDir,
+            });
+        }
     } catch (err) {
         console.log(err);
     }
