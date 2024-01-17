@@ -2,6 +2,7 @@ import { GenerateConfigType } from "../generator";
 import path from "path";
 import { Tools } from "./getTemplate";
 import { log } from "./log";
+import { execSync } from "child_process";
 
 export const packages: Record<Tools, string[]> = {
     biome: ["@biomejs/biome"],
@@ -41,7 +42,7 @@ export const tsPackages = {
     storybook: [],
 } as const;
 
-export const installPackages = async ({
+export const installPackages = ({
     type,
     testTool,
     lintTool,
@@ -62,17 +63,13 @@ export const installPackages = async ({
         ])
         .flat();
     const stop = log(`installing packages...`);
-    const { exec } = await import("child_process");
 
     const command = `${packageManager} i -D ${addPackages.join(" ")}${
         size !== "small" &&
-        [packageManager, "i", "react-error-boundary"].join(" ")
+        [" &&", packageManager, "i", "react-error-boundary"].join(" ")
     }`;
-    const child = exec(command, {
+    stop();
+    execSync(command, {
         cwd: path.resolve(projectRoot),
     });
-    await new Promise((resolve) => {
-        child.on("close", resolve);
-    });
-    stop();
 };

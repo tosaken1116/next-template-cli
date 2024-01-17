@@ -59,7 +59,7 @@ export const generator = async ({
             `${projectRoot}`
         );
 
-        await installPackages({
+        installPackages({
             type,
             testTool,
             lintTool,
