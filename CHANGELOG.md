@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.11](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.10...create-template-next-v0.0.11) (2024-01-17)
+
+
+### Features
+
+* add feature exit with cancel ([86ece2c](https://github.com/tosaken1116/next-template-cli/commit/86ece2c671cd1d6beb2d7bddecd6b388498aeb68))
+
 ## [0.0.10](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.9...create-template-next-v0.0.10) (2024-01-17)
 
 
