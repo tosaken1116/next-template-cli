@@ -1,14 +1,30 @@
 #!/usr/bin/env node
 import { spawn } from "child_process";
-import prompts from "prompts";
+import prompts, { InitialReturnValue } from "prompts";
 import pkg from "picocolors";
 import { generator } from "./generator";
 import path from "path";
 import { log } from "./helper/log";
 import { exit } from "process";
+const handleSigTerm = () => process.exit(0);
+
+process.on("SIGINT", handleSigTerm);
+process.on("SIGTERM", handleSigTerm);
 const { blue, green } = pkg;
+const onPromptState = (state: {
+    value: InitialReturnValue;
+    aborted: boolean;
+    exited: boolean;
+}) => {
+    if (state.aborted) {
+        process.stdout.write("\x1B[?25h");
+        process.stdout.write("\n");
+        process.exit(1);
+    }
+};
 async function main() {
     const { projectName } = await prompts({
+        onState: onPromptState,
         type: "text",
         name: "projectName",
         message: `What is your project ${blue("name")}?`,
@@ -16,6 +32,7 @@ async function main() {
             value === "" ? `Please enter a ${blue("name")}.` : true,
     });
     const { typescript } = await prompts({
+        onState: onPromptState,
         type: "toggle",
         name: "typescript",
         message: `Would you like to use ${blue("Typescript")}?`,
@@ -24,6 +41,7 @@ async function main() {
     });
 
     const { tailwind } = await prompts({
+        onState: onPromptState,
         type: "toggle",
         name: "tailwind",
         message: `Would you like to use ${blue("Tailwind CSS")}?`,
@@ -31,6 +49,7 @@ async function main() {
         inactive: "No",
     });
     const { srcDir } = await prompts({
+        onState: onPromptState,
         type: "toggle",
         name: "srcDir",
         message: `Would you like to use ${blue("`src/` directory")}?`,
@@ -39,6 +58,7 @@ async function main() {
     });
 
     const { appRouter } = await prompts({
+        onState: onPromptState,
         type: "toggle",
         name: "appRouter",
         message: `Would you like to use ${blue("AppRouter")}?`,
@@ -46,6 +66,7 @@ async function main() {
         inactive: "No",
     });
     const { needImportAlias } = await prompts({
+        onState: onPromptState,
         type: "toggle",
         name: "needImportAlias",
         message: `Would you like to customize the default ${blue(
@@ -56,6 +77,7 @@ async function main() {
     });
     const { importAlias } = needImportAlias
         ? await prompts({
+              onState: onPromptState,
               type: "text",
               name: "importAlias",
               message: `What ${blue(
@@ -64,6 +86,7 @@ async function main() {
           })
         : { importAlias: "@/*" };
     const { lintTool } = await prompts({
+        onState: onPromptState,
         type: "select",
         name: "lintTool",
         message: `Which ${blue("lint tool")} would you like to use?`,
@@ -74,6 +97,7 @@ async function main() {
         ],
     });
     const { needStorybook } = await prompts({
+        onState: onPromptState,
         type: "toggle",
         name: "needStorybook",
         message: `Would you like to use ${blue("Storybook")}?`,
@@ -81,6 +105,7 @@ async function main() {
         inactive: "No",
     });
     const { testTool } = await prompts({
+        onState: onPromptState,
         type: "select",
         name: "testTool",
         message: `Which ${blue("test tool")} would you like to use?`,
@@ -91,6 +116,7 @@ async function main() {
         ],
     });
     const { genTool } = await prompts({
+        onState: onPromptState,
         type: "select",
         name: "genTool",
         message: `Which ${blue("code generator")} would you like to use?`,
@@ -101,6 +127,7 @@ async function main() {
         ],
     });
     const { projectSize } = await prompts({
+        onState: onPromptState,
         type: "select",
         name: "projectSize",
         message: `Which ${blue("project size")} would you like to use?`,
@@ -111,6 +138,7 @@ async function main() {
         ],
     });
     const { packageTool } = await prompts({
+        onState: onPromptState,
         type: "select",
         name: "packageTool",
         message: `Which ${blue("package tool")} would you like to use?`,
