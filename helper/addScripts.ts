@@ -64,18 +64,18 @@ const scripts: Record<Tools, Record<GenerateConfigType["size"], Scripts>> = {
         },
     },
     scaffdog: {
-        small: {},
+        small: {
+            "new:component": "scaffdog generate component",
+        },
         medium: {
-            "new:ui": "scaffdog ui",
-            "new:model": "scaffdog model",
-            "new:page": "scaffdog page",
-            "new:domain": "scaffdog domain",
+            "new:ui": "scaffdog generate ui",
+            "new:model": "scaffdog generate model",
         },
         large: {
-            "new:ui": "scaffdog ui",
-            "new:model": "scaffdog model",
-            "new:page": "scaffdog page",
-            "new:domain": "scaffdog domain",
+            "new:ui": "scaffdog generate ui",
+            "new:model": "scaffdog generate model",
+            "new:page": "scaffdog generate page",
+            "new:domain": "scaffdog generate domain",
         },
     },
     storybook: {
