@@ -6,6 +6,7 @@ import { installPackages } from "./helper/installPackages";
 import { addScripts } from "./helper/addScripts";
 import { dirNameFixer } from "./helper/dirNameFixer";
 import { genTemplateDirs } from "./helper/genTemplateDirs";
+import { removeNonUse } from "./helper/removeNonUse";
 
 export type GenerateConfigType = {
     projectRoot: string;
@@ -98,6 +99,18 @@ export const generator = async ({
             });
         }
         genTemplateDirs({
+            type,
+            testTool,
+            lintTool,
+            size,
+            genTool,
+            needStorybook,
+            packageManager,
+            projectRoot,
+            isAppRouter,
+            isSrcDir,
+        });
+        removeNonUse({
             type,
             testTool,
             lintTool,
