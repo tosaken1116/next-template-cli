@@ -8,7 +8,7 @@
     "scripts": {
         "start": "node dist/index.js",
         "dev": "rm -rf dist/template && cp -r template dist/template && ncc build ./index.ts -w -o dist",
-        "build": "rm -rf dist && ncc build index.ts -o ./dist/ --minify --no-cache --no-source-map-register && cp -r template dist/template && cp README.md ./dist/README.md "
+        "build": "rm -rf dist && ncc build index.ts --minify -o ./dist/ --minify --no-cache --no-source-map-register && cp -r template dist/template && cp README.md ./dist/README.md "
     },
     "files": [
         "dist"
