@@ -63,7 +63,7 @@ export const installPackages = ({
     | "projectRoot"
 >) => {
     const tools: Tools[] = [
-        lintTool,
+        ...(lintTool ? [lintTool] : []),
         ...(genTool ? [genTool] : []),
         ...(testTool ? [testTool] : []),
     ];

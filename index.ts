@@ -193,7 +193,7 @@ async function main() {
         projectRoot: path.resolve(`${projectName}`),
         needStorybook,
         type: typescript ? "ts" : "js",
-        lintTool,
+        lintTool: lintTool == "none" ? undefined : lintTool,
         testTool: testTool == "none" ? undefined : testTool,
         genTool: genTool == "none" ? undefined : genTool,
         size: projectSize,

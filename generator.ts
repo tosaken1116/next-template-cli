@@ -12,7 +12,7 @@ export type GenerateConfigType = {
     projectRoot: string;
     type: "js" | "ts";
     needStorybook: boolean;
-    lintTool: "eslint" | "biome";
+    lintTool?: "eslint" | "biome";
     testTool?: "jest" | "vitest";
     genTool?: "hygen" | "scaffdog";
     size: "small" | "medium" | "large";
@@ -50,10 +50,12 @@ export const generator = async ({
                 }`
             );
         }
-        await copyFiles(
-            getTemplate({ tool: lintTool, size }),
-            `${projectRoot}`
-        );
+        if (lintTool != undefined) {
+            await copyFiles(
+                getTemplate({ tool: lintTool, size }),
+                `${projectRoot}`
+            );
+        }
         if (testTool != undefined) {
             await copyFiles(
                 getTemplate({ tool: testTool, type }),
