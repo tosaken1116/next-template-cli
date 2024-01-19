@@ -216,9 +216,9 @@ async function main() {
         });
         options.tailwind = tailwind;
     }
-    if (process.argv.includes("--src")) {
+    if (process.argv.includes("--src-dir")) {
         options.srcDir = true;
-    } else if (process.argv.includes("--no-src")) {
+    } else if (process.argv.includes("--no-src-dir")) {
         options.srcDir = false;
     } else {
         const { srcDir } = await prompts({
