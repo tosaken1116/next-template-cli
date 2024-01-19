@@ -21,6 +21,18 @@ program
         projectName = name;
     })
     .option(
+        "--recommend",
+        `
+Initialize with recommended options.
+    `
+    )
+    .option(
+        "--moonshot",
+        `
+    Initialize with moonshot options.
+`
+    )
+    .option(
         "--ts, --typescript",
         `
 
@@ -182,7 +194,12 @@ async function main() {
             projectName = res.projectName.trim();
         }
     }
-    if (process.argv.includes("--ts") || process.argv.includes("--no-js")) {
+    if (
+        process.argv.includes("--ts") ||
+        process.argv.includes("--no-js") ||
+        process.argv.includes("--recommend") ||
+        process.argv.includes("--moonshot")
+    ) {
         options.typescript = true;
     } else if (
         process.argv.includes("--js") ||
@@ -201,7 +218,10 @@ async function main() {
         options.typescript = typescript;
     }
 
-    if (process.argv.includes("--tailwind")) {
+    if (
+        process.argv.includes("--tailwind") ||
+        process.argv.includes("--recommend")
+    ) {
         options.tailwind = true;
     } else if (process.argv.includes("--no-tailwind")) {
         options.tailwind = false;
@@ -216,7 +236,11 @@ async function main() {
         });
         options.tailwind = tailwind;
     }
-    if (process.argv.includes("--src-dir")) {
+    if (
+        process.argv.includes("--src-dir") ||
+        process.argv.includes("--recommend") ||
+        process.argv.includes("--moonshot")
+    ) {
         options.srcDir = true;
     } else if (process.argv.includes("--no-src-dir")) {
         options.srcDir = false;
@@ -231,7 +255,12 @@ async function main() {
         });
         options.srcDir = srcDir;
     }
-    if (process.argv.includes("--app") || process.argv.includes("--no-pages")) {
+    if (
+        process.argv.includes("--app") ||
+        process.argv.includes("--no-pages") ||
+        process.argv.includes("--recommend") ||
+        process.argv.includes("--moonshot")
+    ) {
         options.appRouter = true;
     } else if (
         process.argv.includes("--no-app") ||
@@ -252,7 +281,7 @@ async function main() {
 
     if (
         typeof options.importAlias !== "string" ||
-        !options.importAlias.length
+        (!options.importAlias.length && !process.argv.includes("--recommend"))
     ) {
         async () => {
             const { needImportAlias } = await prompts({
@@ -281,9 +310,15 @@ async function main() {
     }
     if (process.argv.includes("--no-lint")) {
         options.lintTool = null;
-    } else if (process.argv.includes("--eslint")) {
+    } else if (
+        process.argv.includes("--eslint") ||
+        process.argv.includes("--recommend")
+    ) {
         options.lintTool = "eslint";
-    } else if (process.argv.includes("--biome")) {
+    } else if (
+        process.argv.includes("--biome") ||
+        process.argv.includes("--moonshot")
+    ) {
         options.lintTool = "biome";
     } else {
         const { lintTool } = await prompts({
@@ -299,7 +334,11 @@ async function main() {
         });
         options.lintTool = lintTool;
     }
-    if (process.argv.includes("--storybook")) {
+    if (
+        process.argv.includes("--storybook") ||
+        process.argv.includes("--recommend") ||
+        process.argv.includes("--moonshot")
+    ) {
         options.needStorybook = true;
     } else if (process.argv.includes("--no-storybook")) {
         options.needStorybook = false;
@@ -316,9 +355,15 @@ async function main() {
     }
     if (process.argv.includes("--no-test")) {
         options.testTool = null;
-    } else if (process.argv.includes("--jest")) {
+    } else if (
+        process.argv.includes("--jest") ||
+        process.argv.includes("--recommend")
+    ) {
         options.testTool = "jest";
-    } else if (process.argv.includes("--vitest")) {
+    } else if (
+        process.argv.includes("--vitest") ||
+        process.argv.includes("--moonshot")
+    ) {
         options.testTool = "vitest";
     } else {
         const { testTool } = await prompts({
@@ -336,9 +381,15 @@ async function main() {
     }
     if (process.argv.includes("--no-gen")) {
         options.genTool = null;
-    } else if (process.argv.includes("--hygen")) {
+    } else if (
+        process.argv.includes("--hygen") ||
+        process.argv.includes("--recommend")
+    ) {
         options.genTool = "hygen";
-    } else if (process.argv.includes("--scaffdog")) {
+    } else if (
+        process.argv.includes("--scaffdog") ||
+        process.argv.includes("--moonshot")
+    ) {
         options.genTool = "scaffdog";
     } else {
         const { genTool } = await prompts({
@@ -378,9 +429,15 @@ async function main() {
         options.packageTool = "npm";
     } else if (process.argv.includes("--yarn")) {
         options.packageTool = "yarn";
-    } else if (process.argv.includes("--pnpm")) {
+    } else if (
+        process.argv.includes("--pnpm") ||
+        process.argv.includes("--recommend")
+    ) {
         options.packageTool = "pnpm";
-    } else if (process.argv.includes("--bun")) {
+    } else if (
+        process.argv.includes("--bun") ||
+        process.argv.includes("--moonshot")
+    ) {
         options.packageTool = "bun";
     } else {
         const { packageTool } = await prompts({
@@ -439,7 +496,7 @@ async function main() {
 
     await generator({
         projectRoot: path.resolve(`${projectName}`),
-        needStorybook: options.storybook,
+        needStorybook: options.needStorybook,
         type: options.typescript ? "ts" : "js",
         lintTool: options.lintTool,
         testTool: options.testTool,
