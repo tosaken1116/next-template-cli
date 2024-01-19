@@ -14,8 +14,10 @@
         "dist"
     ],
     "keywords": [
-        "nextjs",
+        "next.js",
         "template",
+        "cli",
+        "generator",
         "create-next-app"
     ],
     "bugs": {
