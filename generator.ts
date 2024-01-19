@@ -14,7 +14,7 @@ export type GenerateConfigType = {
     needStorybook: boolean;
     lintTool: "eslint" | "biome";
     testTool: "jest" | "vitest";
-    genTool: "hygen" | "scaffdog";
+    genTool?: "hygen" | "scaffdog";
     size: "small" | "medium" | "large";
     packageManager: "npm" | "yarn" | "pnpm" | "bun";
     isAppRouter: boolean;

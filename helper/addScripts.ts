@@ -110,7 +110,7 @@ export const addScripts = ({
     | "needStorybook"
     | "projectRoot"
 >) => {
-    const tools: Tools[] = [testTool, lintTool, genTool];
+    const tools: Tools[] = [testTool, lintTool, ...(genTool ? [genTool] : [])];
     if (needStorybook) {
         tools.push("storybook");
     }

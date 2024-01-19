@@ -195,7 +195,7 @@ async function main() {
         type: typescript ? "ts" : "js",
         lintTool,
         testTool,
-        genTool,
+        genTool: genTool == "none" ? undefined : genTool,
         size: projectSize,
         packageManager: packageTool,
         isAppRouter: appRouter,

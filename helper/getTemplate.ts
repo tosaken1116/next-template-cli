@@ -2,11 +2,13 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { GenerateConfigType } from "../generator";
 
-export type Tools =
+export type Tools = Exclude<
     | GenerateConfigType["lintTool"]
     | GenerateConfigType["testTool"]
     | GenerateConfigType["genTool"]
-    | "storybook";
+    | "storybook",
+    undefined
+>;
 type Args = {
     type?: GenerateConfigType["type"];
     tool: Tools;
