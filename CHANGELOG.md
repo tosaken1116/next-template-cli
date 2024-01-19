@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.0.15](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.14...create-template-next-v0.0.15) (2024-01-19)
+
+
+### Features
+
+* support lintTool not needed ([1eaefe9](https://github.com/tosaken1116/next-template-cli/commit/1eaefe972d223d3c7dc203b4973165fec246d991))
+* support scaffdog js template ([90690e6](https://github.com/tosaken1116/next-template-cli/commit/90690e6445f0951a54b4e620aba8b30d74191ca9))
+
+
+### Bug Fixes
+
+* add scaffdog helper option "include" ([b1a9b7d](https://github.com/tosaken1116/next-template-cli/commit/b1a9b7da6b1095c9c89f7b435854d5c87004d6ab))
+* change scaffdog generate name ([e89ae13](https://github.com/tosaken1116/next-template-cli/commit/e89ae138943e4c83f60fe0688f531fc3adbc94e3))
+* large size template generator generate domain not domains ([f3c66cd](https://github.com/tosaken1116/next-template-cli/commit/f3c66cdb480a3f2f3df1872f7d999a70e934cd78))
+* scaffdog template ([6c17bd1](https://github.com/tosaken1116/next-template-cli/commit/6c17bd16aaf7b2c387ad1fb51fd295f247f30c01))
+
 ## [0.0.14](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.13...create-template-next-v0.0.14) (2024-01-19)
 
 
