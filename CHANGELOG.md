@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.13](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.12...create-template-next-v0.0.13) (2024-01-19)
+
+
+### Features
+
+* support genTool not needed ([2a0239e](https://github.com/tosaken1116/next-template-cli/commit/2a0239e7a551fbc994369e8f4aee4ee8437d12fd))
+
 ## [0.0.12](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.11...create-template-next-v0.0.12) (2024-01-17)
 
 
