@@ -7,7 +7,7 @@ export type Tools = Exclude<
     | GenerateConfigType["testTool"]
     | GenerateConfigType["genTool"]
     | "storybook",
-    undefined
+    null
 >;
 type Args = {
     type?: GenerateConfigType["type"];

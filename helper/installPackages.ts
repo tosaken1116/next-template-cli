@@ -79,8 +79,9 @@ export const installPackages = ({
     const stop = log(`installing packages...`);
 
     const command = `${packageManager} i -D ${addPackages.join(" ")}${
-        size !== "small" &&
-        [" &&", packageManager, "i", "react-error-boundary"].join(" ")
+        size !== "small"
+            ? [" &&", packageManager, "i", "react-error-boundary"].join(" ")
+            : ""
     }`;
     stop();
     execSync(command, {

@@ -12,9 +12,9 @@ export type GenerateConfigType = {
     projectRoot: string;
     type: "js" | "ts";
     needStorybook: boolean;
-    lintTool?: "eslint" | "biome";
-    testTool?: "jest" | "vitest";
-    genTool?: "hygen" | "scaffdog";
+    lintTool: "eslint" | "biome" | null;
+    testTool: "jest" | "vitest" | null;
+    genTool: "hygen" | "scaffdog" | null;
     size: "small" | "medium" | "large";
     packageManager: "npm" | "yarn" | "pnpm" | "bun";
     isAppRouter: boolean;
@@ -100,6 +100,7 @@ export const generator = async ({
             genTool,
             needStorybook,
             projectRoot,
+            testTool,
         });
     } catch (err) {
         console.log(err);
