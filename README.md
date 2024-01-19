@@ -111,3 +111,90 @@ bunx create-template-next
     pnpm
     bun
 ```
+
+## CommandLine Options
+
+```bash
+Usage: create-template-next <project-directory> [options]
+
+Options:
+  -V, --version                        output the version number
+  --ts, --typescript
+
+    Initialize as a TypeScript project. (default)
+
+  --js, --javascript
+
+    Initialize as a JavaScript project.
+
+  --tailwind
+
+    Initialize with Tailwind CSS config. (default)
+
+  --eslint
+
+    Initialize with eslint config.
+
+  --app
+
+    Initialize as an App Router project.
+
+  --src-dir
+
+    Initialize inside a `src/` directory.
+
+  --import-alias <alias-to-configure>
+
+    Specify import alias to use (default "@/*").
+
+  --storybook
+
+      Initialize with Storybook.
+
+  --jest
+
+      Initialize with Jest.
+
+  --vitest
+
+      Initialize with Vitest.
+
+  --hygen
+
+      Initialize with Hygen.
+
+  --scaffdog
+
+      Initialize with Scaffdog.
+
+  --small
+
+      Initialize with small project size.
+
+  --medium
+
+      Initialize with medium project size. (default)
+
+  --large
+
+      Initialize with large project size.
+
+  --npm
+
+      Initialize with npm.
+
+  --yarn
+
+      Initialize with Yarn. (default)
+
+  --pnpm
+
+      Initialize with pnpm.
+
+  --bun
+
+      Initialize with bun.
+
+  -h, --help                           display help for command
+
+```
