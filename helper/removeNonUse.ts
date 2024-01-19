@@ -53,7 +53,11 @@ export const removeNonUse = ({
     projectRoot,
     needStorybook,
     genTool,
-}: Pick<GenerateConfigType, "genTool" | "needStorybook" | "projectRoot">) => {
+    testTool,
+}: Pick<
+    GenerateConfigType,
+    "genTool" | "needStorybook" | "projectRoot" | "testTool"
+>) => {
     if (!needStorybook) {
         if (genTool == "hygen") {
             const files = sync(
@@ -75,6 +79,29 @@ export const removeNonUse = ({
                             target: SCAFFDOG_STORYBOOK_TEMPLATE,
                             replace: "",
                         },
+                    ],
+                    file
+                );
+            });
+        }
+    }
+    if (testTool == undefined) {
+        if (genTool == "hygen") {
+            const files = sync(
+                path.join(
+                    projectRoot,
+                    "_templates",
+                    "generator",
+                    "**/test.ejs.t"
+                )
+            );
+            removeFiles(files);
+        }
+        if (genTool == "scaffdog") {
+            const files = sync(path.join(projectRoot, ".scaffdog", "**/*.md"));
+            files.forEach((file) => {
+                stringReplace(
+                    [
                         {
                             target: SCAFFDOG_TEST_TEMPLATE,
                             replace: "",

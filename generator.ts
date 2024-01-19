@@ -13,7 +13,7 @@ export type GenerateConfigType = {
     type: "js" | "ts";
     needStorybook: boolean;
     lintTool: "eslint" | "biome";
-    testTool: "jest" | "vitest";
+    testTool?: "jest" | "vitest";
     genTool?: "hygen" | "scaffdog";
     size: "small" | "medium" | "large";
     packageManager: "npm" | "yarn" | "pnpm" | "bun";
@@ -54,10 +54,12 @@ export const generator = async ({
             getTemplate({ tool: lintTool, size }),
             `${projectRoot}`
         );
-        await copyFiles(
-            getTemplate({ tool: testTool, type }),
-            `${projectRoot}`
-        );
+        if (testTool != undefined) {
+            await copyFiles(
+                getTemplate({ tool: testTool, type }),
+                `${projectRoot}`
+            );
+        }
 
         installPackages({
             type,

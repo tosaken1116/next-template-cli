@@ -194,7 +194,7 @@ async function main() {
         needStorybook,
         type: typescript ? "ts" : "js",
         lintTool,
-        testTool,
+        testTool: testTool == "none" ? undefined : testTool,
         genTool: genTool == "none" ? undefined : genTool,
         size: projectSize,
         packageManager: packageTool,

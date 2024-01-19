@@ -62,7 +62,11 @@ export const installPackages = ({
     | "packageManager"
     | "projectRoot"
 >) => {
-    const tools: Tools[] = [testTool, lintTool, ...(genTool ? [genTool] : [])];
+    const tools: Tools[] = [
+        lintTool,
+        ...(genTool ? [genTool] : []),
+        ...(testTool ? [testTool] : []),
+    ];
     if (needStorybook) {
         tools.push("storybook");
     }
