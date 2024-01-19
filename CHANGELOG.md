@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.18](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.17...create-template-next-v0.0.18) (2024-01-19)
+
+
+### Features
+
+* add recommend moonshot options ([a34c491](https://github.com/tosaken1116/next-template-cli/commit/a34c4914bfd1c01c01a8512cce6474f65ea5a6b8))
+
 ## [0.0.17](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.16...create-template-next-v0.0.17) (2024-01-19)
 
 
