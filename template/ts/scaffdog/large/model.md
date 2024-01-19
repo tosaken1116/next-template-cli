@@ -30,7 +30,7 @@ questions:
 import type { FC } from 'react';
 import { Suspense } from 'react';
 
-import { {{ name }}Presentation } from './presentations';
+import { {{ name }}Container } from './container';
 {{include(inputs.gen_files,"loading" )|| "import { " + name + "LoadingPresentation } from './presentations/loading'"}}
 import { ErrorBoundary } from '@/libs/ErrorBoundary';
 {{inputs.have_props||"type Props = {}"}}
@@ -38,7 +38,7 @@ import { ErrorBoundary } from '@/libs/ErrorBoundary';
 export const {{ name }}: FC{{inputs.have_props||"<Props>"}} = ({{inputs.have_props||"{}"}}) => (
   {{include(inputs.gen_files,"Error") && "<ErrorBoundary>"}}
     {{include(inputs.gen_files,"Loading") && "<Suspense fallback={<" + name + "LoadingPresentation />}>"}}
-      <{{ name }}Presentation />
+      <{{ name }}Container />
     {{include(inputs.gen_files,"Loading") && "</Suspense>"}}
   {{include(inputs.gen_files,"Error") && "</ErrorBoundary>"}}
 );

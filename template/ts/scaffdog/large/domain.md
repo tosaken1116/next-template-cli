@@ -3,20 +3,7 @@ name: "domain"
 root: "src/components/domain"
 output: "."
 questions:
-    name: "component name"
-    have_props:
-        confirm: "Do you have props?"
-        initial: false
-    have_hooks:
-        confirm: "Do you have hooks?"
-        initial: false
-    gen_files:
-        message: "What files do you want to generate?"
-        multiple: true
-        choices:
-            - "Empty"
-            - "Loading"
-            - "Error"
+    name: "domain name"
 ---
 
 # Variables

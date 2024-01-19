@@ -6,15 +6,19 @@ questions:
     name: "component name"
 ---
 
-# `{{ inputs.name }}/index.stories.tsx`
+# Variables
 
-```
-import { {{ inputs.name }} } from '.';
+-   name: `{{ inputs.name | pascal }}`
+
+# `{{ name }}/index.stories.tsx`
+
+```tsx
+import { {{ name }} } from '.';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-const meta: Meta<typeof {{ inputs.name }}> = {
-  component: {{ inputs.name }},
+const meta: Meta<typeof {{ name }}> = {
+  component: {{ name }},
   parameters: {
     layout: 'centered',
   },
@@ -23,7 +27,7 @@ const meta: Meta<typeof {{ inputs.name }}> = {
 
 export default meta;
 
-type Story = StoryObj<typeof {{ inputs.name }}>;
+type Story = StoryObj<typeof {{ name }}>;
 
 export const Default: Story = {
   args: {},
@@ -31,15 +35,15 @@ export const Default: Story = {
 
 ```
 
-# `{{ inputs.name }}/index.tsx`
+# `{{ name }}/index.tsx`
 
-```
+```tsx
 import type { FC } from 'react';
 
 type Props = {};
 
-export const {{ inputs.name }}:FC<Props> = ({}) => {
-  return <>this is ui of {{ inputs.name }} </>;
+export const {{ name }}:FC<Props> = ({}) => {
+  return <>this is ui of {{ name }} </>;
 };
 
 ```
