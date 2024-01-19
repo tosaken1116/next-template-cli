@@ -449,7 +449,7 @@ async function main() {
         isAppRouter: options.appRouter,
         isSrcDir: options.srcDir,
     });
-    // process.stdout.write("\x1Bc");
+    process.stdout.write("\x1Bc");
     console.log(green("Done!"));
     console.log(`create Next.js app ${blue(projectName)}`);
     console.log(`cd ${blue(projectName)}`);
