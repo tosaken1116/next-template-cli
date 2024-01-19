@@ -1,5 +1,5 @@
 ---
-name: "model"
+name: "domain"
 root: "src/components/domain"
 output: "."
 questions:

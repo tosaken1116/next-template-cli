@@ -1,5 +1,5 @@
 ---
-name: "model"
+name: "page"
 root: "src"
 output: "."
 questions:

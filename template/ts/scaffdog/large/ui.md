@@ -1,5 +1,5 @@
 ---
-name: "component"
+name: "ui"
 root: "src/components/ui"
 output: "."
 questions:
