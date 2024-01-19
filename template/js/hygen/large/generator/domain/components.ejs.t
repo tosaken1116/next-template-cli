@@ -1,3 +1,3 @@
 ---
-to: "<%= `src/components/model/${name}/components/index.js` %>"
+to: "<%= `src/components/domains/${name}/components/index.js` %>"
 ---

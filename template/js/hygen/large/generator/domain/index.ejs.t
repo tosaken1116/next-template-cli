@@ -1,5 +1,5 @@
 ---
-to: "<%= `src/components/model/${name}/index.js` %>"
+to: "<%= `src/components/domains/${name}/index.js` %>"
 ---
 export * from "./components"
 

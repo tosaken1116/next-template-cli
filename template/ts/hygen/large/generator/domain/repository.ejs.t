@@ -1,5 +1,5 @@
 ---
-to: "<%= `src/components/model/${name}/repository/index.ts` %>"
+to: "<%= `src/components/domains/${name}/repository/index.ts` %>"
 ---
 import type { <%= name %> } from "../type";
 import { get<%= name %> } from "./get";

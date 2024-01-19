@@ -1,6 +1,6 @@
 ---
 name: "domain"
-root: "src/components/domain"
+root: "src/components/domains"
 output: "."
 questions:
     name: "domain name"

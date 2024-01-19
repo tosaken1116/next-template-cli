@@ -1,5 +1,5 @@
 ---
-to: "<%= `src/components/model/${name}/type/index.ts` %>"
+to: "<%= `src/components/domains/${name}/type/index.ts` %>"
 ---
 
 export type <%= name %> = {

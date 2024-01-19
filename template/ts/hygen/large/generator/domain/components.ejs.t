@@ -1,4 +1,4 @@
 ---
-to: "<%= `src/components/model/${name}/components/index.ts` %>"
+to: "<%= `src/components/domains/${name}/components/index.ts` %>"
 ---
 // export model components from here

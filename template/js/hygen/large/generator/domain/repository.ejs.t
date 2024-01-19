@@ -1,5 +1,5 @@
 ---
-to: "<%= `src/components/model/${name}/repository/index.js` %>"
+to: "<%= `src/components/domains/${name}/repository/index.js` %>"
 ---
 import { get<%= name %> } from "./get";
 
