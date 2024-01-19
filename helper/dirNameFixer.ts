@@ -2,13 +2,15 @@ import fs from "fs";
 import { GenerateConfigType } from "../generator";
 import path from "path";
 export const dirNameFixer = ({
-    type,
     projectRoot,
     genTool,
     size,
     isAppRouter,
     isSrcDir,
-}: GenerateConfigType) => {
+}: Pick<
+    GenerateConfigType,
+    "projectRoot" | "genTool" | "size" | "isAppRouter" | "isSrcDir"
+>) => {
     if (!isSrcDir) {
         //  generateTool
         getAllFiles(

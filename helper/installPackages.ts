@@ -51,7 +51,17 @@ export const installPackages = ({
     needStorybook,
     packageManager,
     projectRoot,
-}: GenerateConfigType) => {
+}: Pick<
+    GenerateConfigType,
+    | "type"
+    | "testTool"
+    | "lintTool"
+    | "size"
+    | "genTool"
+    | "needStorybook"
+    | "packageManager"
+    | "projectRoot"
+>) => {
     const tools: Tools[] = [testTool, lintTool, genTool];
     if (needStorybook) {
         tools.push("storybook");

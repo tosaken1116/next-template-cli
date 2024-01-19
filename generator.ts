@@ -68,59 +68,34 @@ export const generator = async ({
             needStorybook,
             packageManager,
             projectRoot,
-            isAppRouter,
-            isSrcDir,
         });
 
         addScripts({
-            type,
             testTool,
             lintTool,
             size,
             genTool,
             needStorybook,
-            packageManager,
             projectRoot,
-            isAppRouter,
-            isSrcDir,
         });
         if (!isAppRouter || !isSrcDir) {
             dirNameFixer({
-                type,
-                testTool,
-                lintTool,
                 size,
                 genTool,
-                needStorybook,
-                packageManager,
                 projectRoot,
                 isAppRouter,
                 isSrcDir,
             });
         }
         genTemplateDirs({
-            type,
-            testTool,
-            lintTool,
             size,
-            genTool,
-            needStorybook,
-            packageManager,
             projectRoot,
-            isAppRouter,
             isSrcDir,
         });
         removeNonUse({
-            type,
-            testTool,
-            lintTool,
-            size,
             genTool,
             needStorybook,
-            packageManager,
             projectRoot,
-            isAppRouter,
-            isSrcDir,
         });
     } catch (err) {
         console.log(err);

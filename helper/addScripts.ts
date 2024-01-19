@@ -95,15 +95,21 @@ const scripts: Record<Tools, Record<GenerateConfigType["size"], Scripts>> = {
 };
 
 export const addScripts = ({
-    type,
     testTool,
     lintTool,
     size,
     genTool,
     needStorybook,
-    packageManager,
     projectRoot,
-}: GenerateConfigType) => {
+}: Pick<
+    GenerateConfigType,
+    | "testTool"
+    | "lintTool"
+    | "size"
+    | "genTool"
+    | "needStorybook"
+    | "projectRoot"
+>) => {
     const tools: Tools[] = [testTool, lintTool, genTool];
     if (needStorybook) {
         tools.push("storybook");

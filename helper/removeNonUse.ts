@@ -53,7 +53,7 @@ export const removeNonUse = ({
     projectRoot,
     needStorybook,
     genTool,
-}: GenerateConfigType) => {
+}: Pick<GenerateConfigType, "genTool" | "needStorybook" | "projectRoot">) => {
     if (!needStorybook) {
         if (genTool == "hygen") {
             const files = sync(

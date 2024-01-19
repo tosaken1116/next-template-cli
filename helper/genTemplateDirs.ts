@@ -6,7 +6,7 @@ export const genTemplateDirs = ({
     size,
     projectRoot,
     isSrcDir,
-}: GenerateConfigType) => {
+}: Pick<GenerateConfigType, "size" | "projectRoot" | "isSrcDir">) => {
     if (size == "small") {
         generateFiles([
             {
