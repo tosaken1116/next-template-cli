@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.17](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.16...create-template-next-v0.0.17) (2024-01-19)
+
+
+### Bug Fixes
+
+* log comment out ([2ad0272](https://github.com/tosaken1116/next-template-cli/commit/2ad0272784d839b99801040ee8bc4830d0d16b51))
+
 ## [0.0.16](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.15...create-template-next-v0.0.16) (2024-01-19)
 
 
