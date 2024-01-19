@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.0.16](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.15...create-template-next-v0.0.16) (2024-01-19)
+
+
+### Features
+
+* support inline option ([e5077c4](https://github.com/tosaken1116/next-template-cli/commit/e5077c40e99d35b382a1b6b813dc775cbf1bdd69))
+* support Pascal case in hygen ([7b3ceba](https://github.com/tosaken1116/next-template-cli/commit/7b3cebaa0e61a49a04d38968181b6b5c0cae99e9))
+
+
+### Bug Fixes
+
+* change src dir option ([5435b66](https://github.com/tosaken1116/next-template-cli/commit/5435b664de65b246d9293e7da1e6538b7f163352))
+
 ## [0.0.15](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.14...create-template-next-v0.0.15) (2024-01-19)
 
 
