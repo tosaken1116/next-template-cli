@@ -23,7 +23,7 @@ jobs:
                   path: "**/node_modules"
                   key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
             - name: Lint
-              run: npm run ci:check
+              run: npm run ci:lint
 
     test:
         needs: install-dependencies
