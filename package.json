@@ -1,48 +1,54 @@
 {
-    "name": "create-template-next",
-    "version": "0.0.18",
-    "description": "create nextjs app with various prompts",
-    "bin": {
-        "create-template-next": "./dist/index.js"
-    },
-    "scripts": {
-        "start": "node dist/index.js",
-        "dev": "rm -rf dist/template && cp -r template dist/template && ncc build ./index.ts -w -o dist",
-        "build": "rm -rf dist && ncc build index.ts --minify -o ./dist/ --minify --no-cache --no-source-map-register && cp -r template dist/template && cp README.md ./dist/README.md "
-    },
-    "files": [
-        "dist"
-    ],
-    "keywords": [
-        "next.js",
-        "template",
-        "cli",
-        "generator",
-        "create-next-app"
-    ],
-    "bugs": {
-        "url": "https://github.com/tosaken1116/next-template-cli"
-    },
-    "homepage": "https://github.com/tosaken1116/next-template-cli#readme",
-    "author": "tosaken1116 <tosaken.dev@gmail.com> (http://github.com/tosaken1116)",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/tosaken1116/next-template-cli.git"
-    },
-    "type": "module",
-    "license": "MIT",
-    "devDependencies": {
-        "@types/node": "^20.10.7",
-        "@types/prompts": "^2.4.9",
-        "@vercel/ncc": "^0.38.1",
-        "child_process": "^1.0.0",
-        "commander": "^11.1.0",
-        "glob": "^10.3.10",
-        "picocolors": "^1.0.0",
-        "prompts": "^2.4.2",
-        "typescript": "^5.3.3"
-    },
-    "engines": {
-        "node": ">=18.17.0"
-    }
+  "name": "create-template-next",
+  "version": "0.0.18",
+  "description": "create nextjs app with various prompts",
+  "bin": {
+    "create-template-next": "./dist/index.js"
+  },
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "rm -rf dist/template && cp -r template dist/template && ncc build ./index.ts -w -o dist",
+    "build": "rm -rf dist && ncc build index.ts --minify -o ./dist/ --minify --no-cache --no-source-map-register && cp -r template dist/template && cp README.md ./dist/README.md "
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "next.js",
+    "template",
+    "cli",
+    "generator",
+    "create-next-app"
+  ],
+  "bugs": {
+    "url": "https://github.com/tosaken1116/next-template-cli"
+  },
+  "homepage": "https://github.com/tosaken1116/next-template-cli#readme",
+  "author": "tosaken1116 <tosaken.dev@gmail.com> (http://github.com/tosaken1116)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tosaken1116/next-template-cli.git"
+  },
+  "type": "module",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.10.7",
+    "@types/prompts": "^2.4.9",
+    "@vercel/ncc": "^0.38.1",
+    "child_process": "^1.0.0",
+    "commander": "^11.1.0",
+    "glob": "^10.3.10",
+    "picocolors": "^1.0.0",
+    "prompts": "^2.4.2",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.17.0"
+  },
+  "nextBundleAnalysis": {
+    "budget": 358400,
+    "budgetPercentIncreaseRed": 20,
+    "minimumChangeThreshold": 0,
+    "showDetails": true
+  }
 }

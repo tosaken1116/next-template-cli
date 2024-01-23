@@ -7,7 +7,15 @@ import { addScripts } from "./helper/addScripts";
 import { dirNameFixer } from "./helper/dirNameFixer";
 import { genTemplateDirs } from "./helper/genTemplateDirs";
 import { removeNonUse } from "./helper/removeNonUse";
-
+import { addWorkflow } from "./helper/addWorkflow";
+export type Workflows =
+    | "lighthouse"
+    | "lint"
+    | "test"
+    | "code-diff"
+    | "bundle-size"
+    | "install-dependencies"
+    | "build";
 export type GenerateConfigType = {
     projectRoot: string;
     type: "js" | "ts";
@@ -19,6 +27,7 @@ export type GenerateConfigType = {
     packageManager: "npm" | "yarn" | "pnpm" | "bun";
     isAppRouter: boolean;
     isSrcDir: boolean;
+    workflows: Workflows[];
 };
 const __filename = fileURLToPath(import.meta.url);
 
@@ -34,6 +43,7 @@ export const generator = async ({
     packageManager,
     isAppRouter,
     isSrcDir,
+    workflows,
 }: GenerateConfigType) => {
     try {
         if (needStorybook) {
@@ -102,6 +112,7 @@ export const generator = async ({
             projectRoot,
             testTool,
         });
+        addWorkflow({ projectRoot, workflows });
     } catch (err) {
         console.log(err);
     }

@@ -1,0 +1,40 @@
+name: cache build
+description: 'install node_modules and cache them for later use'
+runs:
+  using: composite
+  steps:
+    - uses: actions/checkout@v2
+    - name: Use Cached Build
+      id: cached-build
+      uses: actions/cache@v4
+      with:
+        path: '**/.next'
+        key: ${{ runner.os }}-npm-build-${{ github.sha }}
+
+    - name: Use Head Branch Build Cache
+      if: steps.cached-build.outputs.cache-hit != 'true'
+      id: head-branch-build-cache
+      uses: actions/cache@v4
+      with:
+        path: '**/.next'
+        key: ${{ runner.os }}-npm-build-${{ github.head_ref }}
+
+    - name: Use Base Branch Build Cache
+      if: steps.cached-build.outputs.cache-hit != 'true' && steps.head-branch-build-cache.outputs.cache-hit != 'true'
+      id: base-branch-build-cache
+      uses: actions/cache@v4
+      with:
+        path: '**/.next'
+        key: ${{ runner.os }}-npm-build-${{ github.base_ref }}
+
+    - name: Use Cached Dependencies
+      if: steps.cached-build.outputs.cache-hit != 'true'
+      uses: actions/cache@v4
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+
+    - name: Build
+      if: steps.cached-build.outputs.cache-hit != 'true'
+      run: npm run build
+      shell: bash

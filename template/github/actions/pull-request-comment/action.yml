@@ -1,0 +1,45 @@
+name: Comment to Pull Request
+description: 'Comment to Pull Request'
+inputs:
+  includes-comment:
+    description: 'Comment ID'
+    required: true
+  comment-body:
+    description: 'Comment Body'
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Get Comment Body
+      id: get-comment-body
+      if: success() && github.event.number
+      run: |
+        echo "body<<EOF" >> $GITHUB_OUTPUT
+        echo "${{inputs.includes-comment}}" >> $GITHUB_OUTPUT
+        echo "${{inputs.comment-body}}" >> $GITHUB_OUTPUT
+        echo EOF >> $GITHUB_OUTPUT
+      shell: bash
+
+    - name: Find Comment
+      uses: peter-evans/find-comment@v2
+      if: success() && github.event.number
+      id: fc
+      with:
+        issue-number: ${{ github.event.number }}
+        body-includes: ${{ inputs.includes-comment }}
+
+    - name: Create Comment
+      uses: peter-evans/create-or-update-comment@v2
+      if: success() && github.event.number && steps.fc.outputs.comment-id == 0
+      with:
+        issue-number: ${{ github.event.number }}
+        body: '${{ steps.get-comment-body.outputs.body }}'
+
+    - name: Update Comment
+      uses: peter-evans/create-or-update-comment@v2
+      if: success() && github.event.number && steps.fc.outputs.comment-id != 0
+      with:
+        issue-number: ${{ github.event.number }}
+        body: ${{ steps.get-comment-body.outputs.body }}
+        comment-id: ${{ steps.fc.outputs.comment-id }}
+        edit-mode: replace

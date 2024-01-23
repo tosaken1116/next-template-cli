@@ -454,6 +454,34 @@ async function main() {
         });
         options.packageTool = packageTool;
     }
+
+    const { needWorkflow } = await prompts({
+        onState: onPromptState,
+        type: "toggle",
+        name: "needWorkflow",
+        message: `Would you like to use ${blue("GitHub Actions")}?`,
+        active: "Yes",
+        inactive: "No",
+    });
+    if (needWorkflow) {
+        const { workflows } = await prompts({
+            onState: onPromptState,
+            type: "multiselect",
+            name: "workflows",
+            message: `Which ${blue("workflow")} would you like to use?`,
+            choices: [
+                { title: "Lighthouse score", value: "lighthouse" },
+                { title: "Check amount code change", value: "code-diff" },
+                { title: "lint", value: "lint" },
+                { title: "test", value: "test" },
+                { title: "Check Bundle Size", value: "bundle-size" },
+            ],
+        });
+        options.workflows = workflows;
+    } else {
+        options.workflows = [];
+    }
+
     const commandOptions = ["create-next-app", projectName];
     if (options.typescript) {
         commandOptions.push("--typescript");
@@ -505,8 +533,9 @@ async function main() {
         packageManager: options.packageTool,
         isAppRouter: options.appRouter,
         isSrcDir: options.srcDir,
+        workflows: options.workflows,
     });
-    process.stdout.write("\x1Bc");
+    // process.stdout.write("\x1Bc");
     console.log(green("Done!"));
     console.log(`create Next.js app ${blue(projectName)}`);
     console.log(`cd ${blue(projectName)}`);
