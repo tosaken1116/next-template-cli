@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.0.19](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.18...create-template-next-v0.0.19) (2024-01-23)
+
+
+### Features
+
+* add github actions template ([654c75e](https://github.com/tosaken1116/next-template-cli/commit/654c75eca29d23fb10dab412522827cb45a10eb2))
+* add github actions template ([1f8e2a3](https://github.com/tosaken1116/next-template-cli/commit/1f8e2a37e7a0e3969ec77f0d027235244a19720b))
+* add github actions template with ci ([abc1eef](https://github.com/tosaken1116/next-template-cli/commit/abc1eef95e0c14fdc2c6a3f9d5c5ab36be328aca))
+
 ## [0.0.18](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.17...create-template-next-v0.0.18) (2024-01-19)
 
 
