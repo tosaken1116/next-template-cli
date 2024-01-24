@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.21](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.20...create-template-next-v0.0.21) (2024-01-24)
+
+
+### Features
+
+* add report useless modules workflow ([5a60593](https://github.com/tosaken1116/next-template-cli/commit/5a60593e5ce32dd000327acc9306edf97c91d742))
+
 ## [0.0.20](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.19...create-template-next-v0.0.20) (2024-01-24)
 
 
