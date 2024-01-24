@@ -11,7 +11,8 @@ import {
     TEST,
     WORKFLOW_BASE,
 } from "./workflow";
-import { mkdirSync, writeFileSync } from "fs";
+import { mkdirSync, readFileSync, writeFileSync } from "fs";
+import { addScripts } from "./addScripts";
 type Actions = "cache-build" | "cache-module" | "pull-request-comment";
 const dependWorkflows: Record<Workflows, Workflows[]> = {
     lighthouse: ["build"],
@@ -93,4 +94,26 @@ export const addWorkflow = ({
     const workflowPath = path.join(projectRoot, ".github/workflows", "ci.yml");
     mkdirSync(path.dirname(workflowPath), { recursive: true });
     writeFileSync(workflowPath, workflowBody);
+    if (workflows.includes("lighthouse")) {
+        const srcDir = path.join(
+            __dirname,
+            "../template/github/workflow/lighthouse"
+        );
+        copyFiles(srcDir, projectRoot);
+    }
+    if (workflows.includes("bundle-size")) {
+        const packageJsonPath = path.join(projectRoot, "package.json");
+        const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf8"));
+        packageJson.nextBundleAnalysis = {
+            budget: 358400,
+            budgetPercentIncreaseRed: 20,
+            minimumChangeThreshold: 0,
+            showDetails: true,
+        };
+        writeFileSync(
+            packageJsonPath,
+            JSON.stringify(packageJson, null, 4),
+            "utf8"
+        );
+    }
 };
