@@ -472,6 +472,7 @@ async function main() {
                 { title: "lint", value: "lint" },
                 { title: "test", value: "test" },
                 { title: "Check Bundle Size", value: "bundle-size" },
+                { title: "Report Useless Modules", value: "useless-modules" },
             ],
         });
         options.workflows = workflows;

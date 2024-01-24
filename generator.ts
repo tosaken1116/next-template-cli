@@ -15,7 +15,8 @@ export type Workflows =
     | "code-diff"
     | "bundle-size"
     | "install-dependencies"
-    | "build";
+    | "build"
+    | "useless-modules";
 export type GenerateConfigType = {
     projectRoot: string;
     type: "js" | "ts";

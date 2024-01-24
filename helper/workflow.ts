@@ -209,3 +209,35 @@ export const CODE_DIFF = `  report-diff:
               includes-comment: "<!-- __DIFF -->"
               comment-body: \${{steps.diff-comment.outputs.body}}
 `;
+
+export const USELESS_MODULES = `  report-useless-modules:
+      needs: install-dependencies
+      if: github.event_name == 'pull_request'
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - name: Use Cached Dependencies
+          uses: actions/cache@v4
+          with:
+            path: '**/node_modules'
+            key: \${{ runner.os }}-npm-\${{ hashFiles('**/package-lock.json') }}
+        - name: Analyze modules
+          id: useless-modules
+          run: |
+            echo "result=$(npx depcheck . --skip-missing --json)" >> $GITHUB_OUTPUT
+        - name: Create Useless Modules Comment
+          id: useless-modules-comment
+          uses: actions/github-script@v3
+          with:
+            github-token: \${{secrets.GITHUB_TOKEN}}
+            script: |
+              const json = \${{steps.useless-modules.outputs.result}};
+              const isUselessModuleEmpty = json.dependencies.length === 0;
+              const uselessModulesComment = isUselessModuleEmpty ? 'useless modules not found✨' : \`> [!CAUTION]\\n> The following modules are not used in the code. Please remove them.\\n> \${json.dependencies.map((module) => \`- \${module}\`).join('\\n> ')}\`;
+              core.setOutput("body", uselessModulesComment)
+        - name: report useless modules
+          uses: ./.github/actions/pull-request-comment
+          with:
+            includes-comment: '<!-- __USELESS_MODULES -->'
+            comment-body: \${{steps.useless-modules-comment.outputs.body}}
+`;

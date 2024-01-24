@@ -9,6 +9,7 @@ import {
     LIGHT_HOUSE,
     LINT,
     TEST,
+    USELESS_MODULES,
     WORKFLOW_BASE,
 } from "./workflow";
 import { mkdirSync, readFileSync, writeFileSync } from "fs";
@@ -22,6 +23,7 @@ const dependWorkflows: Record<Workflows, Workflows[]> = {
     "bundle-size": ["build"],
     "install-dependencies": [],
     build: ["install-dependencies"],
+    "useless-modules": ["install-dependencies"],
 };
 const workflowFile: Record<Workflows, { main: string; actions: Actions[] }> = {
     lighthouse: {
@@ -51,6 +53,10 @@ const workflowFile: Record<Workflows, { main: string; actions: Actions[] }> = {
     build: {
         main: BUILD,
         actions: ["cache-build"],
+    },
+    "useless-modules": {
+        main: USELESS_MODULES,
+        actions: ["pull-request-comment"],
     },
 };
 export const addWorkflow = ({
