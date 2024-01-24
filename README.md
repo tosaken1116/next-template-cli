@@ -112,6 +112,28 @@ bunx create-template-next
     bun
 ```
 
+### use GitHub Actions
+
+```bash
+? Would you like to use GitHub Actions? › No / Yes
+```
+
+### Select Workflow
+
+```bash
+? Which workflow would you like to use? ›
+Instructions:
+    ↑/↓: Highlight option
+    ←/→/[space]: Toggle selection
+    a: Toggle all
+    enter/return: Complete answer
+◯   Lighthouse score
+◯   Check amount code change
+◯   lint
+◯   test
+◯   Check Bundle Size
+```
+
 ## CommandLine Options
 
 ```bash
