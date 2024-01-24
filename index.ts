@@ -560,7 +560,7 @@ async function main() {
         isSrcDir: options.srcDir,
         workflows: options.workflows,
     });
-    // process.stdout.write("\x1Bc");
+    process.stdout.write("\x1Bc");
     console.log(green("Done!"));
     console.log(`create Next.js app ${blue(projectName)}`);
     console.log(`cd ${blue(projectName)}`);
