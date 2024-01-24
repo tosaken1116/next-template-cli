@@ -165,6 +165,12 @@ Initialize with recommended options.
     Initialize with bun.
 `
     )
+    .option(
+        "--github-actions",
+        `
+    Initialize with GitHub Actions.
+`
+    )
     .allowUnknownOption()
     .parse(process.argv);
 const onPromptState = (state: {
@@ -454,16 +460,7 @@ async function main() {
         });
         options.packageTool = packageTool;
     }
-
-    const { needWorkflow } = await prompts({
-        onState: onPromptState,
-        type: "toggle",
-        name: "needWorkflow",
-        message: `Would you like to use ${blue("GitHub Actions")}?`,
-        active: "Yes",
-        inactive: "No",
-    });
-    if (needWorkflow) {
+    if (process.argv.includes("--github-actions")) {
         const { workflows } = await prompts({
             onState: onPromptState,
             type: "multiselect",
@@ -478,8 +475,35 @@ async function main() {
             ],
         });
         options.workflows = workflows;
-    } else {
+    } else if (process.argv.includes("--no-github-actions")) {
         options.workflows = [];
+    } else {
+        const { needWorkflow } = await prompts({
+            onState: onPromptState,
+            type: "toggle",
+            name: "needWorkflow",
+            message: `Would you like to use ${blue("GitHub Actions")}?`,
+            active: "Yes",
+            inactive: "No",
+        });
+        if (needWorkflow) {
+            const { workflows } = await prompts({
+                onState: onPromptState,
+                type: "multiselect",
+                name: "workflows",
+                message: `Which ${blue("workflow")} would you like to use?`,
+                choices: [
+                    { title: "Lighthouse score", value: "lighthouse" },
+                    { title: "Check amount code change", value: "code-diff" },
+                    { title: "lint", value: "lint" },
+                    { title: "test", value: "test" },
+                    { title: "Check Bundle Size", value: "bundle-size" },
+                ],
+            });
+            options.workflows = workflows;
+        } else {
+            options.workflows = [];
+        }
     }
 
     const commandOptions = ["create-next-app", projectName];
