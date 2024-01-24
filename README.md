@@ -119,6 +119,12 @@ Usage: create-template-next <project-directory> [options]
 
 Options:
   -V, --version                        output the version number
+  --recommend
+  Initialize with recommended options.
+
+  --moonshot
+      Initialize with moonshot options.
+
   --ts, --typescript
 
     Initialize as a TypeScript project. (default)
@@ -195,6 +201,8 @@ Options:
 
       Initialize with bun.
 
-  -h, --help                           display help for command
+  --github-actions
+      Initialize with GitHub Actions.
 
+  -h, --help                           display help for command
 ```
