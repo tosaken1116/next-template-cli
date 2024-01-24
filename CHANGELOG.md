@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.0.20](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.19...create-template-next-v0.0.20) (2024-01-24)
+
+
+### Features
+
+* support command line option of github actions ([4a85319](https://github.com/tosaken1116/next-template-cli/commit/4a85319cadaab9f68fccedf4450830904b21dbee))
+
+
+### Bug Fixes
+
+* add template config with github actions ([ebac4ea](https://github.com/tosaken1116/next-template-cli/commit/ebac4eac260bd0cab9895bc6455c3f2c88b7ae15))
+
 ## [0.0.19](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.18...create-template-next-v0.0.19) (2024-01-23)
 
 
