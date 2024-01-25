@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.22](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.21...create-template-next-v0.0.22) (2024-01-25)
+
+
+### Features
+
+* support other package manager of workflows ([92bee63](https://github.com/tosaken1116/next-template-cli/commit/92bee6376932dfe50fc1e9dace36755f10429b2c))
+
 ## [0.0.21](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.20...create-template-next-v0.0.21) (2024-01-24)
 
 
