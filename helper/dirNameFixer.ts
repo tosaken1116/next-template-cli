@@ -1,6 +1,7 @@
 import fs from "fs";
 import { GenerateConfigType } from "../generator";
 import path from "path";
+import { getAllFiles } from "./getAllFiles";
 export const dirNameFixer = ({
     projectRoot,
     genTool,
@@ -67,27 +68,4 @@ export const stringReplace = (
     } catch (error) {
         console.error("Error occurred while replacing string:", error);
     }
-};
-
-const getAllFiles = (dirPath: string): string[] => {
-    let files: string[] = [];
-
-    const getFilesRecursively = (dir: string) => {
-        const fileNames = fs.readdirSync(dir);
-
-        for (const fileName of fileNames) {
-            const filePath = path.join(dir, fileName);
-            const stat = fs.statSync(filePath);
-
-            if (stat.isFile()) {
-                files.push(filePath);
-            } else if (stat.isDirectory()) {
-                getFilesRecursively(filePath);
-            }
-        }
-    };
-
-    getFilesRecursively(dirPath);
-
-    return files;
 };

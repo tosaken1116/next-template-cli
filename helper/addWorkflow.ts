@@ -13,7 +13,8 @@ import {
     WORKFLOW_BASE,
 } from "./workflow";
 import { mkdirSync, readFileSync, writeFileSync } from "fs";
-import { addScripts } from "./addScripts";
+import { stringReplace } from "./dirNameFixer";
+import { getAllFiles } from "./getAllFiles";
 type Actions = "cache-build" | "cache-module" | "pull-request-comment";
 const dependWorkflows: Record<Workflows, Workflows[]> = {
     lighthouse: ["build"],
@@ -59,10 +60,26 @@ const workflowFile: Record<Workflows, { main: string; actions: Actions[] }> = {
         actions: ["pull-request-comment"],
     },
 };
+const lockfiles = {
+    npm: "package-lock.json",
+    yarn: "yarn.lock",
+    pnpm: "pnpm-lock.yaml",
+    bun: "bun.lockb",
+} as const;
+const packageManagerScript = {
+    npm: "npm run",
+    yarn: "yarn",
+    pnpm: "pnpm",
+    bun: "bun run",
+} as const;
 export const addWorkflow = ({
     projectRoot,
     workflows,
-}: Pick<GenerateConfigType, "projectRoot" | "workflows">) => {
+    packageManager,
+}: Pick<
+    GenerateConfigType,
+    "projectRoot" | "workflows" | "packageManager"
+>) => {
     const { workflows: installWorkflow, actions } = Array.from(
         new Set(
             workflows
@@ -120,6 +137,43 @@ export const addWorkflow = ({
             packageJsonPath,
             JSON.stringify(packageJson, null, 4),
             "utf8"
+        );
+    }
+    if (packageManager !== "npm") {
+        getAllFiles(path.resolve(projectRoot, ".github/workflows")).forEach(
+            (file) => {
+                stringReplace(
+                    [
+                        {
+                            target: "package-lock.json",
+                            replace: lockfiles[packageManager],
+                        },
+                        {
+                            target: "npm run",
+                            replace: packageManagerScript[packageManager],
+                        },
+                    ],
+                    file
+                );
+            }
+        );
+
+        getAllFiles(path.resolve(projectRoot, ".github/actions")).forEach(
+            (file) => {
+                stringReplace(
+                    [
+                        {
+                            target: "package-lock.json",
+                            replace: lockfiles[packageManager],
+                        },
+                        {
+                            target: "npm run",
+                            replace: packageManagerScript[packageManager],
+                        },
+                    ],
+                    file
+                );
+            }
         );
     }
 };

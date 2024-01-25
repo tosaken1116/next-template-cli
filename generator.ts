@@ -113,7 +113,7 @@ export const generator = async ({
             projectRoot,
             testTool,
         });
-        addWorkflow({ projectRoot, workflows });
+        addWorkflow({ projectRoot, workflows, packageManager });
     } catch (err) {
         console.log(err);
     }
