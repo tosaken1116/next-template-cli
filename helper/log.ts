@@ -1,57 +1,20 @@
 import pkg from "picocolors";
-const { blue } = pkg;
-const chars = [
-    `
-⠴⠀⠀
-⠀⠀⠀
-`,
-    `
-⠴⠋⠀
-⠀⠀⠀
-`,
-    `
-⠀⠛⠀
-⠀⠀⠀
-`,
+const { blue, green } = pkg;
+const chars = ["⠴", "⠦", "⠇", "⠋", "⠙", "⠸"];
 
-    `
-⠀⠘⠦
-⠀⠀⠀
-`,
-    `
-⠀⠀⠦
-⠀⠀⠉
-`,
-    `
-⠀⠀⠀
-⠀⠀⠛
-`,
-    `
-⠀⠀⠀
-⠀⠴⠋
-`,
-    `
-⠀⠀⠀
-⠀⠶⠀
-`,
-    `
-⠀⠀⠀
-⠙⠦⠀
-`,
-    `
-⠤⠀⠀
-⠉⠀⠀
-`,
-];
-export const log = (message: string, delay = 100) => {
+export const log = async (
+    command: () => Promise<any>,
+    message: string,
+    delay = 100
+) => {
     let x = 0;
 
     const interval = setInterval(function () {
-        process.stdout.write("\x1Bc" + blue(chars[x++]));
-        process.stdout.write(`\x1b[3;4H`);
-        process.stdout.write(message);
-
+        process.stdout.write("\r" + blue(chars[x++]) + " " + message);
         x = x % chars.length;
     }, delay);
-    return () => clearInterval(interval);
+
+    await command();
+    clearInterval(interval);
+    process.stdout.write("\r" + green("✔") + " " + message + "\n");
 };

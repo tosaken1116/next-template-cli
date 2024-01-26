@@ -74,7 +74,7 @@ export const generator = async ({
             );
         }
 
-        installPackages({
+        await installPackages({
             type,
             testTool,
             lintTool,

@@ -2,7 +2,7 @@ import { GenerateConfigType } from "../generator";
 import path from "path";
 import { Tools } from "./getTemplate";
 import { log } from "./log";
-import { execSync } from "child_process";
+import { exec } from "./exec";
 
 export const packages: Record<Tools, string[]> = {
     biome: ["@biomejs/biome"],
@@ -42,7 +42,7 @@ export const tsPackages = {
     storybook: [],
 } as const;
 
-export const installPackages = ({
+export const installPackages = async ({
     type,
     testTool,
     lintTool,
@@ -76,15 +76,16 @@ export const installPackages = ({
             ...(type == "ts" ? tsPackages[tool] : []),
         ])
         .flat();
-    const stop = log(`installing packages...`);
-
     const command = `${packageManager} i -D ${addPackages.join(" ")}${
         size !== "small"
             ? [" &&", packageManager, "i", "react-error-boundary"].join(" ")
             : ""
     }`;
-    stop();
-    execSync(command, {
-        cwd: path.resolve(projectRoot),
-    });
+    await log(
+        () =>
+            exec(command, {
+                cwd: projectRoot,
+            }),
+        `installing packages...`
+    );
 };

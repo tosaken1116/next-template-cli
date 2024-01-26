@@ -7,6 +7,7 @@ import { generator } from "./generator";
 import path from "path";
 import { log } from "./helper/log";
 import { exit } from "process";
+import { exec } from "./helper/exec";
 const handleSigTerm = () => process.exit(0);
 let projectName = "";
 process.on("SIGINT", handleSigTerm);
@@ -537,15 +538,12 @@ async function main() {
     commandOptions.push(`--use-${options.packageTool}`);
 
     // create-next-app コマンドを実行
-    const { exec } = await import("child_process");
     const command = `npx ${commandOptions.join(" ")}`;
 
-    const child = exec(command);
-    const stop = log("Creating your project...");
-    await new Promise((resolve) => {
-        child.on("close", resolve);
-    });
-    stop();
+    await log(
+        () => exec(command),
+        "Initializing Next.js project with create-next-app..."
+    );
 
     await generator({
         projectRoot: path.resolve(`${projectName}`),
@@ -560,7 +558,6 @@ async function main() {
         isSrcDir: options.srcDir,
         workflows: options.workflows,
     });
-    process.stdout.write("\x1Bc");
     console.log(green("Done!"));
     console.log(`create Next.js app ${blue(projectName)}`);
     console.log(`cd ${blue(projectName)}`);
