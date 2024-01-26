@@ -8,6 +8,7 @@ import { dirNameFixer } from "./helper/dirNameFixer";
 import { genTemplateDirs } from "./helper/genTemplateDirs";
 import { removeNonUse } from "./helper/removeNonUse";
 import { addWorkflow } from "./helper/addWorkflow";
+import { log } from "./helper/log";
 export type Workflows =
     | "lighthouse"
     | "lint"
@@ -47,73 +48,178 @@ export const generator = async ({
     workflows,
 }: GenerateConfigType) => {
     try {
-        if (needStorybook) {
-            await copyFiles(
-                getTemplate({ type, tool: "storybook" }),
-                `${projectRoot}/.storybook`
-            );
-        }
-        if (genTool) {
-            await copyFiles(
-                getTemplate({ type, tool: genTool, size }),
-                `${projectRoot}/${
-                    genTool == "hygen" ? "_templates" : ".scaffdog"
-                }`
-            );
-        }
-        if (lintTool != undefined) {
-            await copyFiles(
-                getTemplate({ tool: lintTool, size }),
-                `${projectRoot}`
-            );
-        }
-        if (testTool != undefined) {
-            await copyFiles(
-                getTemplate({ tool: testTool, type }),
-                `${projectRoot}`
-            );
-        }
-
-        await installPackages({
-            type,
-            testTool,
-            lintTool,
-            size,
-            genTool,
-            needStorybook,
-            packageManager,
-            projectRoot,
-        });
-
-        addScripts({
-            testTool,
-            lintTool,
-            size,
-            genTool,
-            needStorybook,
-            projectRoot,
-        });
-        if (!isAppRouter || !isSrcDir) {
-            dirNameFixer({
+        await Promise.all([
+            log(
+                () =>
+                    copyFiles(
+                        getTemplate({ type, tool: "storybook" }),
+                        `${projectRoot}/.storybook`
+                    ),
+                "copying storybook files..."
+            ),
+            (() => {
+                if (!genTool) {
+                    return;
+                }
+                return log(
+                    () =>
+                        copyFiles(
+                            getTemplate({ type, tool: genTool, size }),
+                            `${projectRoot}/${
+                                genTool == "hygen" ? "_templates" : ".scaffdog"
+                            }`
+                        ),
+                    "copying gen files..."
+                );
+            })(),
+            (() => {
+                if (!lintTool) {
+                    return;
+                }
+                return log(
+                    () =>
+                        copyFiles(
+                            getTemplate({ tool: lintTool, size }),
+                            `${projectRoot}`
+                        ),
+                    "copying lint files..."
+                );
+            })(),
+            (() => {
+                if (!testTool) {
+                    return;
+                }
+                return log(
+                    () =>
+                        copyFiles(
+                            getTemplate({ tool: testTool, type }),
+                            `${projectRoot}`
+                        ),
+                    "copying test files..."
+                );
+            })(),
+            installPackages({
+                type,
+                testTool,
+                lintTool,
                 size,
                 genTool,
+                needStorybook,
+                packageManager,
                 projectRoot,
-                isAppRouter,
-                isSrcDir,
-            });
-        }
-        genTemplateDirs({
-            size,
-            projectRoot,
-            isSrcDir,
+            }),
+            addScripts({
+                testTool,
+                lintTool,
+                size,
+                genTool,
+                needStorybook,
+                projectRoot,
+            }),
+            () => {
+                if (!isAppRouter || !isSrcDir) {
+                    return dirNameFixer({
+                        size,
+                        genTool,
+                        projectRoot,
+                        isAppRouter,
+                        isSrcDir,
+                    });
+                }
+                return () => {};
+            },
+            log(
+                () =>
+                    genTemplateDirs({
+                        size,
+                        projectRoot,
+                        isSrcDir,
+                    }),
+                "generating template dirs..."
+            ),
+            () => {
+                removeNonUse({
+                    genTool,
+                    needStorybook,
+                    projectRoot,
+                    testTool,
+                });
+            },
+            log(
+                () => addWorkflow({ projectRoot, workflows, packageManager }),
+                "adding workflow..."
+            ),
+        ]).catch((err) => {
+            throw err;
         });
-        removeNonUse({
-            genTool,
-            needStorybook,
-            projectRoot,
-            testTool,
-        });
-        addWorkflow({ projectRoot, workflows, packageManager });
+
+        // if (needStorybook) {
+        //     await copyFiles(
+        //         getTemplate({ type, tool: "storybook" }),
+        //         `${projectRoot}/.storybook`
+        //     );
+        // }
+        // if (genTool) {
+        //     await copyFiles(
+        //         getTemplate({ type, tool: genTool, size }),
+        //         `${projectRoot}/${
+        //             genTool == "hygen" ? "_templates" : ".scaffdog"
+        //         }`
+        //     );
+        // }
+        // if (lintTool != undefined) {
+        //     await copyFiles(
+        //         getTemplate({ tool: lintTool, size }),
+        //         `${projectRoot}`
+        //     );
+        // }
+        // if (testTool != undefined) {
+        //     await copyFiles(
+        //         getTemplate({ tool: testTool, type }),
+        //         `${projectRoot}`
+        //     );
+        // }
+
+        // await installPackages({
+        //     type,
+        //     testTool,
+        //     lintTool,
+        //     size,
+        //     genTool,
+        //     needStorybook,
+        //     packageManager,
+        //     projectRoot,
+        // });
+
+        // addScripts({
+        //     testTool,
+        //     lintTool,
+        //     size,
+        //     genTool,
+        //     needStorybook,
+        //     projectRoot,
+        // });
+        // if (!isAppRouter || !isSrcDir) {
+        //     dirNameFixer({
+        //         size,
+        //         genTool,
+        //         projectRoot,
+        //         isAppRouter,
+        //         isSrcDir,
+        //     });
+        // }
+        // genTemplateDirs({
+        //     size,
+        //     projectRoot,
+        //     isSrcDir,
+        // });
+        // removeNonUse({
+        //     genTool,
+        //     needStorybook,
+        //     projectRoot,
+        //     testTool,
+        // });
+        // addWorkflow({ projectRoot, workflows, packageManager });
     } catch (err) {
         console.log(err);
     }

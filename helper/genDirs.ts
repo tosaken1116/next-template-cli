@@ -1,20 +1,21 @@
 import { existsSync, mkdirSync, writeFileSync } from "fs";
+import { mkdir, writeFile } from "fs/promises";
 import path from "path";
 
 export const generateDirs = (dirPaths: string[]): void => {
     dirPaths.forEach((dirPath) => {
-        mkdirSync(dirPath, { recursive: true });
+        mkdir(dirPath, { recursive: true });
     });
 };
 
-export const generateFiles = (
+export const generateFiles = async (
     filePaths: { path: string; content: string }[]
-): void => {
+): Promise<void> => {
     filePaths.forEach((file) => {
         if (!existsSync(file.path)) {
             const dir = path.dirname(file.path);
             mkdirSync(dir, { recursive: true });
         }
-        writeFileSync(file.path, file.content);
+        writeFile(file.path, file.content);
     });
 };

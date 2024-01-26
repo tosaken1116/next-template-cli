@@ -81,7 +81,8 @@ export const installPackages = async ({
             ? [" &&", packageManager, "i", "react-error-boundary"].join(" ")
             : ""
     }`;
-    await log(
+
+    return log(
         () =>
             exec(command, {
                 cwd: projectRoot,

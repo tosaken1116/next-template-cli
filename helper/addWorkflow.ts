@@ -12,9 +12,10 @@ import {
     USELESS_MODULES,
     WORKFLOW_BASE,
 } from "./workflow";
-import { mkdirSync, readFileSync, writeFileSync } from "fs";
+import { readFileSync } from "fs";
 import { stringReplace } from "./dirNameFixer";
 import { getAllFiles } from "./getAllFiles";
+import { mkdir, writeFile } from "fs/promises";
 type Actions = "cache-build" | "cache-module" | "pull-request-comment";
 const dependWorkflows: Record<Workflows, Workflows[]> = {
     lighthouse: ["build"],
@@ -72,7 +73,7 @@ const packageManagerScript = {
     pnpm: "pnpm",
     bun: "bun run",
 } as const;
-export const addWorkflow = ({
+export const addWorkflow = async ({
     projectRoot,
     workflows,
     packageManager,
@@ -115,8 +116,8 @@ export const addWorkflow = ({
         copyFiles(srcDir, dstDir);
     });
     const workflowPath = path.join(projectRoot, ".github/workflows", "ci.yml");
-    mkdirSync(path.dirname(workflowPath), { recursive: true });
-    writeFileSync(workflowPath, workflowBody);
+    await mkdir(path.dirname(workflowPath), { recursive: true });
+    await writeFile(workflowPath, workflowBody);
     if (workflows.includes("lighthouse")) {
         const srcDir = path.join(
             __dirname,
@@ -133,7 +134,7 @@ export const addWorkflow = ({
             minimumChangeThreshold: 0,
             showDetails: true,
         };
-        writeFileSync(
+        await writeFile(
             packageJsonPath,
             JSON.stringify(packageJson, null, 4),
             "utf8"

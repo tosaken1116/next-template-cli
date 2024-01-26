@@ -2,13 +2,13 @@ import path from "path";
 import { GenerateConfigType } from "../generator";
 import { generateFiles } from "./genDirs";
 
-export const genTemplateDirs = ({
+export const genTemplateDirs = async ({
     size,
     projectRoot,
     isSrcDir,
 }: Pick<GenerateConfigType, "size" | "projectRoot" | "isSrcDir">) => {
     if (size == "small") {
-        generateFiles([
+        await generateFiles([
             {
                 path: path.resolve(
                     projectRoot,
@@ -19,7 +19,7 @@ export const genTemplateDirs = ({
         ]);
     }
     if (size == "medium") {
-        generateFiles([
+        await generateFiles([
             {
                 path: path.resolve(
                     projectRoot,
@@ -38,7 +38,7 @@ export const genTemplateDirs = ({
     }
 
     if (size == "large") {
-        generateFiles([
+        await generateFiles([
             {
                 path: path.resolve(
                     projectRoot,
@@ -70,7 +70,7 @@ export const genTemplateDirs = ({
         ]);
     }
     if (size == ("large" || "medium")) {
-        generateFiles([
+        await generateFiles([
             {
                 path: path.resolve(
                     projectRoot,
