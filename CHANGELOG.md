@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.24](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.23...create-template-next-v0.0.24) (2024-01-26)
+
+
+### Features
+
+* add --all-actions option ([ff2dd9a](https://github.com/tosaken1116/next-template-cli/commit/ff2dd9ad61a188dce74e8a512b35e2a9b2952ce9))
+* generate multiple logs ([7d76d43](https://github.com/tosaken1116/next-template-cli/commit/7d76d4332f1b6c73c25daf6261032987f232c6c6))
+
 ## [0.0.23](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.22...create-template-next-v0.0.23) (2024-01-26)
 
 
