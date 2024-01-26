@@ -172,6 +172,12 @@ Initialize with recommended options.
     Initialize with GitHub Actions.
 `
     )
+    .option(
+        "--actions-all",
+        `
+    Initialize with ALL GitHub Actions.
+`
+    )
     .allowUnknownOption()
     .parse(process.argv);
 const onPromptState = (state: {
@@ -461,7 +467,20 @@ async function main() {
         });
         options.packageTool = packageTool;
     }
-    if (process.argv.includes("--github-actions")) {
+    if (
+        process.argv.includes("--all-actions") ||
+        process.argv.includes("--recommend") ||
+        process.argv.includes("--moonshot")
+    ) {
+        options.workflows = [
+            "lighthouse",
+            "code-diff",
+            "lint",
+            "test",
+            "bundle-size",
+            "useless-modules",
+        ];
+    } else if (process.argv.includes("--github-actions")) {
         const { workflows } = await prompts({
             onState: onPromptState,
             type: "multiselect",
