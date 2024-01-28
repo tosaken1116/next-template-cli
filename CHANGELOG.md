@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.25](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.24...create-template-next-v0.0.25) (2024-01-28)
+
+
+### Bug Fixes
+
+* add storybook wit h package install ([d2eefd3](https://github.com/tosaken1116/next-template-cli/commit/d2eefd37dd9ac09f0b7477ffd36b429464d0b646))
+
 ## [0.0.24](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.23...create-template-next-v0.0.24) (2024-01-26)
 
 
