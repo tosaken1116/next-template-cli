@@ -1,7 +1,10 @@
 import { rmSync } from "fs";
+import { rm } from "fs/promises";
 
-export const removeFiles = (filePaths: string[]): void => {
-    filePaths.forEach((filePath) => {
-        rmSync(filePath, { recursive: true, force: true });
-    });
+export const removeFiles = async (filePaths: string[]): Promise<void> => {
+    Promise.all(
+        filePaths.map((filePath) => {
+            return rm(filePath, { recursive: true, force: true });
+        })
+    );
 };

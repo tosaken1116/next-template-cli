@@ -1,18 +1,10 @@
 import path from "path";
 import { fileURLToPath } from "url";
-import { GenerateConfigType } from "../generator";
+import { GenerateConfigType, Tools } from "../types";
 
-export type Tools = Exclude<
-    | GenerateConfigType["lintTool"]
-    | GenerateConfigType["testTool"]
-    | GenerateConfigType["genTool"]
-    | "storybook",
-    null
->;
 type Args = {
     type?: GenerateConfigType["type"];
-    tool: Tools;
-
+    tool: Tools | "actions" | "workflows";
     size?: GenerateConfigType["size"];
 };
 const __filename = fileURLToPath(import.meta.url);

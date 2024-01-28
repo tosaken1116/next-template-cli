@@ -1,14 +1,5 @@
-import {
-    existsSync,
-    mkdirSync,
-    readdir,
-    copyFileSync,
-    readdirSync,
-    rename,
-    promises,
-} from "fs";
+import { existsSync, mkdirSync, copyFileSync, readdirSync } from "fs";
 import path from "path";
-import { cwd } from "process";
 
 const ensureDirectoryExistence = (filePath: string) => {
     const dirname = path.dirname(filePath);
@@ -20,9 +11,9 @@ const ensureDirectoryExistence = (filePath: string) => {
 };
 
 // ファイルのコピー関数
-export const copyFiles = async (srcDir: string, dstDir: string) => {
-    if (!existsSync(dstDir)) {
-        mkdirSync(dstDir, { recursive: true });
+export const copyFiles = async (srcDir: string, to: string) => {
+    if (!existsSync(to)) {
+        mkdirSync(to, { recursive: true });
     }
 
     // ソースディレクトリのファイル/ディレクトリ一覧を取得
@@ -30,7 +21,7 @@ export const copyFiles = async (srcDir: string, dstDir: string) => {
 
     for (let entry of entries) {
         const srcPath = path.join(srcDir, entry.name);
-        const dstPath = path.join(dstDir, entry.name);
+        const dstPath = path.join(to, entry.name);
 
         // entryがディレクトリの場合は再帰的にコピー
         if (entry.isDirectory()) {
@@ -40,4 +31,12 @@ export const copyFiles = async (srcDir: string, dstDir: string) => {
             copyFileSync(srcPath, dstPath);
         }
     }
+};
+
+export const multipleCopyFiles = async (
+    paths: { from: string; to: string }[]
+) => {
+    paths.forEach(({ from, to }) => {
+        copyFiles(from, to);
+    });
 };

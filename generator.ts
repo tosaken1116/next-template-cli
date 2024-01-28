@@ -1,158 +1,51 @@
 import path from "path";
 import { fileURLToPath } from "url";
-import { getTemplate } from "./helper/getTemplate";
-import { copyFiles } from "./helper/copy";
+import { multipleCopyFiles } from "./helper/copy";
 import { installPackages } from "./helper/installPackages";
-import { addScripts } from "./helper/addScripts";
-import { dirNameFixer } from "./helper/dirNameFixer";
-import { genTemplateDirs } from "./helper/genTemplateDirs";
-import { removeNonUse } from "./helper/removeNonUse";
-import { addWorkflow } from "./helper/addWorkflow";
 import { log } from "./helper/log";
-export type Workflows =
-    | "lighthouse"
-    | "lint"
-    | "test"
-    | "code-diff"
-    | "bundle-size"
-    | "install-dependencies"
-    | "build"
-    | "useless-modules";
-export type GenerateConfigType = {
-    projectRoot: string;
-    type: "js" | "ts";
-    needStorybook: boolean;
-    lintTool: "eslint" | "biome" | null;
-    testTool: "jest" | "vitest" | null;
-    genTool: "hygen" | "scaffdog" | null;
-    size: "small" | "medium" | "large";
-    packageManager: "npm" | "yarn" | "pnpm" | "bun";
-    isAppRouter: boolean;
-    isSrcDir: boolean;
-    workflows: Workflows[];
-};
+import { GenerateConfigType } from "./types";
+import { getEditContents } from "./core/rootOperator";
+import { editPackageJson } from "./helper/editPackageJson";
+import { removeFiles } from "./helper/removeFiles";
+import { replaceStrings } from "./helper/replaceStrings";
+import { createFiles } from "./helper/createFiles";
+
 const __filename = fileURLToPath(import.meta.url);
 
 const __dirname = path.dirname(__filename);
-export const generator = async ({
-    projectRoot,
-    type,
-    needStorybook,
-    genTool,
-    lintTool,
-    testTool,
-    size,
-    packageManager,
-    isAppRouter,
-    isSrcDir,
-    workflows,
-}: GenerateConfigType) => {
+export const generator = async (config: GenerateConfigType) => {
+    const {
+        dependencies: depend,
+        devDependencies: devDepend,
+        packageJson,
+        copyFiles,
+        removeFiles: uselessFiles,
+        rewriteFiles,
+        writeFiles,
+    } = getEditContents(config);
     try {
         await Promise.all([
             log(
                 () =>
-                    copyFiles(
-                        getTemplate({ type, tool: "storybook" }),
-                        `${projectRoot}/.storybook`
+                    installPackages(
+                        { depend, devDepend },
+                        config.packageManager,
+                        config.projectRoot
                     ),
-                "copying storybook files..."
+                "installing packages..."
             ),
-            (() => {
-                if (!genTool) {
-                    return;
-                }
-                return log(
-                    () =>
-                        copyFiles(
-                            getTemplate({ type, tool: genTool, size }),
-                            `${projectRoot}/${
-                                genTool == "hygen" ? "_templates" : ".scaffdog"
-                            }`
-                        ),
-                    "copying gen files..."
-                );
-            })(),
-            (() => {
-                if (!lintTool) {
-                    return;
-                }
-                return log(
-                    () =>
-                        copyFiles(
-                            getTemplate({ tool: lintTool, size }),
-                            `${projectRoot}`
-                        ),
-                    "copying lint files..."
-                );
-            })(),
-            (() => {
-                if (!testTool) {
-                    return;
-                }
-                return log(
-                    () =>
-                        copyFiles(
-                            getTemplate({ tool: testTool, type }),
-                            `${projectRoot}`
-                        ),
-                    "copying test files..."
-                );
-            })(),
-            installPackages({
-                type,
-                testTool,
-                lintTool,
-                size,
-                genTool,
-                needStorybook,
-                packageManager,
-                projectRoot,
-            }),
-            addScripts({
-                testTool,
-                lintTool,
-                size,
-                genTool,
-                needStorybook,
-                projectRoot,
-            }),
-            () => {
-                if (!isAppRouter || !isSrcDir) {
-                    return dirNameFixer({
-                        size,
-                        genTool,
-                        projectRoot,
-                        isAppRouter,
-                        isSrcDir,
-                    });
-                }
-                return () => {};
-            },
+            log(() => multipleCopyFiles(copyFiles), "copying files..."),
+            log(() => createFiles(writeFiles), "creating files..."),
+        ]);
+        await Promise.all([
+            log(() => removeFiles(uselessFiles), "removing files..."),
+            log(() => replaceStrings(rewriteFiles), "rewriting files..."),
             log(
-                () =>
-                    genTemplateDirs({
-                        size,
-                        projectRoot,
-                        isSrcDir,
-                    }),
-                "generating template dirs..."
+                () => editPackageJson(config.projectRoot, packageJson),
+                "editing package.json..."
             ),
-            () => {
-                removeNonUse({
-                    genTool,
-                    needStorybook,
-                    projectRoot,
-                    testTool,
-                });
-            },
-            log(
-                () => addWorkflow({ projectRoot, workflows, packageManager }),
-                "adding workflow..."
-            ),
-        ]).catch((err) => {
-            throw err;
-        });
+        ]);
     } catch (err) {
-        console.log(err);
+        throw err;
     }
 };
