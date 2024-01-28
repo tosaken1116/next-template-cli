@@ -21,6 +21,7 @@ export const packages: Record<Tools, string[]> = {
     vitest: ["@testing-library/jest-dom", "vitest", "@vitejs/plugin-react"],
     scaffdog: ["scaffdog"],
     storybook: [
+        "storybook",
         "@storybook/addon-essentials",
         "@storybook/addon-interactions",
         "@storybook/addon-links",
