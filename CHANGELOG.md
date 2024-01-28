@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.26](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.25...create-template-next-v0.0.26) (2024-01-28)
+
+
+### Bug Fixes
+
+* generate storybook scripts ([7886d89](https://github.com/tosaken1116/next-template-cli/commit/7886d892656e4d069423e6bcb8f94dd62fd9d930))
+
 ## [0.0.25](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.24...create-template-next-v0.0.25) (2024-01-28)
 
 
