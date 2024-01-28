@@ -80,15 +80,15 @@ const scripts: Record<Tools, Record<GenerateConfigType["size"], Scripts>> = {
     },
     storybook: {
         small: {
-            storybook: "start-storybook -p 6006",
+            storybook: "storybook dev -p 6006",
             "build-storybook": "storybook build",
         },
         medium: {
-            storybook: "start-storybook -p 6006",
+            storybook: "storybook dev -p 6006",
             "build-storybook": "storybook build",
         },
         large: {
-            storybook: "start-storybook -p 6006",
+            storybook: "storybook dev -p 6006",
             "build-storybook": "storybook build",
         },
     },
