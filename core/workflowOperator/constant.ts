@@ -66,6 +66,17 @@ export const needActionsPaths: Record<Workflows, Actions[]> = {
     "useless-modules": ["pull-request-comment"],
 } as const;
 
+export const workflowDependencies: Record<Workflows, Workflows[]> = {
+    lighthouse: ["build"],
+    lint: ["install-dependencies"],
+    test: ["install-dependencies"],
+    "code-diff": [],
+    "bundle-size": ["build"],
+    "install-dependencies": [],
+    build: ["install-dependencies"],
+    "useless-modules": ["install-dependencies"],
+} as const;
+
 export const WORKFLOW_BASE = `
 name: CI
 

@@ -42,7 +42,11 @@ export const genOperator = (
     const addScripts = scripts[genTool][config.size];
     const copyFiles = [
         {
-            from: getTemplate({ type: config.type, tool: genTool }),
+            from: getTemplate({
+                type: config.type,
+                tool: genTool,
+                size: config.size,
+            }),
             to: path.join(config.projectRoot, copyFilePaths[genTool]),
         },
     ];

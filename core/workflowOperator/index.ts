@@ -12,7 +12,7 @@ import {
     scripts,
     workflowContents,
 } from "./constant";
-import { actionsDir } from "./utils";
+import { actionsDir, resolveWorkflowDependencies } from "./utils";
 import { getRunCommand } from "../../helper/packageManager";
 
 export const workflowOperator = (
@@ -36,7 +36,8 @@ export const workflowOperator = (
     const addScripts = workflows.map((workflow) => {
         return scripts[workflow][config.size];
     });
-    const needActions = workflows
+    const resolvedWorkflows = resolveWorkflowDependencies(workflows);
+    const needActions = resolvedWorkflows
         .map((workflow) => {
             return needActionsPaths[workflow];
         })
@@ -51,7 +52,7 @@ export const workflowOperator = (
     });
     const workflowContent = [
         WORKFLOW_BASE,
-        ...workflows.map((workflow) => {
+        ...resolvedWorkflows.map((workflow) => {
             return workflowContents[workflow];
         }),
     ].join("\n");
@@ -87,7 +88,7 @@ export const workflowOperator = (
                       ),
                       replaceStrings: [
                           {
-                              target: "npm run ",
+                              target: "npm run",
                               replace: getRunCommand(config.packageManager),
                           },
                       ],
