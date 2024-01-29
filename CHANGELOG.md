@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.27](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.26...create-template-next-v0.0.27) (2024-01-29)
+
+
+### Bug Fixes
+
+* resolve workflow dependent ([30a6603](https://github.com/tosaken1116/next-template-cli/commit/30a66034c4deed64353a6e371c8d3a1d8aa92590))
+
 ## [0.0.26](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.25...create-template-next-v0.0.26) (2024-01-28)
 
 
