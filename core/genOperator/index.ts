@@ -64,10 +64,17 @@ export const genOperator = (
         ...getAppRouterReplaceFiles(genTool, {
             projectRoot: config.projectRoot,
             isAppRouter: config.isAppRouter,
+            size: config.size,
+            type: config.type,
         }).map((file) => {
             return {
                 path: file,
-                replaceStrings: [{ target: "page.tsx", replace: "index.tsx" }],
+                replaceStrings: [
+                    {
+                        target: `page.${config.type}x`,
+                        replace: `index.${config.type}x`,
+                    },
+                ],
             };
         }),
 
@@ -75,6 +82,8 @@ export const genOperator = (
         ...getSrcReplaceFiles(genTool, {
             projectRoot: config.projectRoot,
             isSrcDir: config.isAppRouter,
+            size: config.size,
+            type: config.type,
         }).map((file) => {
             return {
                 path: file,

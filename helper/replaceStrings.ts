@@ -25,7 +25,13 @@ const replaceString = async (file: RewriteFiles[number]) => {
         writeFile(file.path, fileContent, "utf-8");
     } catch (error) {
         if (error instanceof Error) {
-            throw new Error("Error occurred while replacing string:", error);
+            throw new Error(
+                `Error occurred while replacing string:\n ${
+                    file.path
+                }\n${file.replaceStrings
+                    .map((replace) => `${replace.target} => ${replace.replace}`)
+                    .join("\n")}`
+            );
         }
         throw new Error("Error occurred while replacing string");
     }
