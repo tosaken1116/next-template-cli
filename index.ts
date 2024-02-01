@@ -328,12 +328,12 @@ async function main() {
             });
             options.appRouter = appRouter;
         }
-
         if (
             typeof options.importAlias !== "string" ||
-            !options.importAlias.length
+            !options.importAlias.length ||
+            !options.importAlias
         ) {
-            async () => {
+            await (async () => {
                 const { needImportAlias } = await prompts({
                     onState: onPromptState,
                     type: "toggle",
@@ -346,6 +346,7 @@ async function main() {
                 });
                 if (!needImportAlias) {
                     options.importAlias = "@/*";
+                    return;
                 }
                 const { importAlias } = await prompts({
                     onState: onPromptState,
@@ -356,7 +357,9 @@ async function main() {
                     )} would you like configured?`,
                 });
                 options.importAlias = importAlias;
-            };
+            })();
+        } else {
+            options.importAlias = options.importAlias;
         }
         if (process.argv.includes("--no-lint")) {
             options.lintTool = null;
