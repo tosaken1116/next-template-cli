@@ -42,10 +42,10 @@ export const uiLibraryOperator = (
                   {
                       path: path.join(
                           config.projectRoot,
-                          "src",
+                          config.isSrcDir ? "src" : "",
                           "libs",
                           "cn",
-                          "index.ts"
+                          `index.${config.type}`
                       ),
                       content: SHADCN_CN.replace(
                           config.type === "js" ? ", type ClassValue" : "",
@@ -91,7 +91,7 @@ export const uiLibraryOperator = (
                   {
                       path: path.join(
                           config.projectRoot,
-                          "src",
+                          config.isSrcDir ? "src" : "",
                           "libs",
                           "provider",
                           `index.${config.type}x`
