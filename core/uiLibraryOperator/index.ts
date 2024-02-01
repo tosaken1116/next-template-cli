@@ -59,7 +59,7 @@ export const uiLibraryOperator = (
                       path: path.join(
                           config.projectRoot,
                           config.isSrcDir ? "src" : "",
-                          config.isAppRouter ? "app" : "pages",
+                          config.isAppRouter ? "app" : "styles",
                           "globals.css"
                       ),
                       content: SHADCN_CSS,
