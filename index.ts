@@ -231,24 +231,63 @@ async function main() {
             });
             options.typescript = typescript;
         }
-
-        if (
-            process.argv.includes("--tailwind") ||
+        if (process.argv.includes("--no-ui")) {
+            options.uiLibrary = null;
+        } else if (process.argv.includes("--chakra-ui")) {
+            options.uiLibrary = "chakra-ui";
+        } else if (
+            process.argv.includes("--mui") ||
             process.argv.includes("--recommend")
         ) {
-            options.tailwind = true;
-        } else if (process.argv.includes("--no-tailwind")) {
-            options.tailwind = false;
+            options.uiLibrary = "mui";
+        } else if (
+            process.argv.includes("--shadcn-ui") ||
+            process.argv.includes("--moonshot")
+        ) {
+            options.uiLibrary = "shadcn-ui";
+        } else if (process.argv.includes("--mantine-ui")) {
+            options.uiLibrary = "mantine-ui";
+        } else if (process.argv.includes("--yamada-ui")) {
+            options.uiLibrary = "yamada-ui";
         } else {
-            const { tailwind } = await prompts({
+            const { uiLibrary } = await prompts({
                 onState: onPromptState,
-                type: "toggle",
-                name: "tailwind",
-                message: `Would you like to use ${blue("Tailwind CSS")}?`,
-                active: "Yes",
-                inactive: "No",
+                type: "select",
+                name: "uiLibrary",
+                message: `Which ${blue("UI library")} would you like to use?`,
+                choices: [
+                    { title: "Chakra UI", value: "chakra-ui" },
+                    { title: "Material UI", value: "mui" },
+                    { title: "Shadcn UI", value: "shadcn-ui" },
+                    { title: "Mantine UI", value: "mantine-ui" },
+                    { title: "Yamada UI", value: "yamada-ui" },
+                    { title: "None", value: null },
+                ],
             });
-            options.tailwind = tailwind;
+            options.uiLibrary = uiLibrary;
+            if (uiLibrary == "shadcn-ui") {
+                options.tailwind = true;
+            }
+        }
+        if (options.uiLibrary === null) {
+            if (
+                process.argv.includes("--tailwind") ||
+                process.argv.includes("--recommend")
+            ) {
+                options.tailwind = true;
+            } else if (process.argv.includes("--no-tailwind")) {
+                options.tailwind = false;
+            } else {
+                const { tailwind } = await prompts({
+                    onState: onPromptState,
+                    type: "toggle",
+                    name: "tailwind",
+                    message: `Would you like to use ${blue("Tailwind CSS")}?`,
+                    active: "Yes",
+                    inactive: "No",
+                });
+                options.tailwind = tailwind;
+            }
         }
         if (
             process.argv.includes("--src-dir") ||
@@ -586,6 +625,7 @@ async function main() {
             isAppRouter: options.appRouter,
             isSrcDir: options.srcDir,
             workflows: options.workflows,
+            uiLibrary: options.uiLibrary,
         });
         console.log(green("Done!"));
         console.log(`create Next.js app ${blue(projectName)}`);

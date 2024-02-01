@@ -7,6 +7,7 @@ import { testOperator } from "../testOperator";
 import { workflowOperator } from "../workflowOperator";
 import { dirOperator } from "../dirOperator";
 import { objectMergeDeep } from "../../helper/mergeObject";
+import { uiLibraryOperator } from "../uiLibraryOperator";
 
 export const getEditContents = (
     config: GenerateConfigType
@@ -22,6 +23,7 @@ export const getEditContents = (
             projectSize: config.size,
             projectRoot: config.projectRoot,
         }),
+        uiLibraryOperator(config.uiLibrary, config),
     ].reduce(
         (acc, cur) => {
             return {

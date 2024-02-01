@@ -25,6 +25,13 @@ export type Workflows =
 export type Actions = "cache-build" | "cache-module" | "pull-request-comment";
 export type WorkflowTemplates = `${"workflows/"}${Workflows}`;
 export type ActionsTemplates = `${"actions/"}${Actions}`;
+export type UiLibrary =
+    | "mui"
+    | "chakra-ui"
+    | "shadcn-ui"
+    | "mantine-ui"
+    | "yamada-ui"
+    | null;
 export type GenerateConfigType = {
     projectRoot: string;
     type: Language;
@@ -37,6 +44,7 @@ export type GenerateConfigType = {
     isAppRouter: boolean;
     isSrcDir: boolean;
     workflows: Workflows[];
+    uiLibrary: UiLibrary;
 };
 export type RewriteFiles = {
     path: string;
