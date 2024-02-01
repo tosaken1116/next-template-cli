@@ -21,8 +21,8 @@ export const getSrcReplaceFiles = (
             file
                 .split("/")
                 .splice(
-                    genTool === "hygen" ? -3 : -2,
-                    genTool === "hygen" ? 3 : 2
+                    genTool === "hygen" ? -3 : -1,
+                    genTool === "hygen" ? 3 : 1
                 )
                 .join("/")
         )
@@ -49,8 +49,8 @@ export const getAppRouterReplaceFiles = (
             file
                 .split("/")
                 .splice(
-                    genTool === "hygen" ? -3 : -2,
-                    genTool === "hygen" ? 3 : 2
+                    genTool === "hygen" ? -3 : -1,
+                    genTool === "hygen" ? 3 : 1
                 )
                 .join("/")
         )
