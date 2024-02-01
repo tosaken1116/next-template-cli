@@ -19,5 +19,5 @@ export const dirs: Record<ProjectSize, { dir: string; content: string }[]> = {
             content: "export * from 'react-error-boundary';",
         },
     ],
-    small: [{ dir: "components/ui/.gitkeep", content: "" }],
+    small: [{ dir: "components/.gitkeep", content: "" }],
 } as const;
