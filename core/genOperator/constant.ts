@@ -13,7 +13,7 @@ export const tsPackages: Record<NonNullable<GenTool>, string[]> = {
 export const scripts: Scripts<GenTool> = {
     scaffdog: {
         small: {
-            "new:component": "scaffdog generate component",
+            new: "scaffdog generate component",
         },
         medium: {
             "new:ui": "scaffdog generate ui",
