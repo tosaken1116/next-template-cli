@@ -25,24 +25,27 @@ export const scripts: Record<
 > = {
     biome: {
         small: {
-            lint: "biome lint --apply --no-errors-on-unmatched",
+            "lint:biome": "biome lint --apply --no-errors-on-unmatched",
         },
         medium: {
-            lint: "biome lint --apply --no-errors-on-unmatched",
+            "lint:biome": "biome lint --apply --no-errors-on-unmatched",
         },
         large: {
-            lint: "biome lint --apply --no-errors-on-unmatched",
+            "lint:biome": "biome lint --apply --no-errors-on-unmatched",
         },
     },
     eslint: {
         small: {
-            lint: "eslint 'src/**/*.{ts,tsx}' --report-unused-disable-directives --max-warnings 0",
+            "lint:eslint":
+                "eslint 'src/**/*.{ts,tsx}' --report-unused-disable-directives --max-warnings 0",
         },
         medium: {
-            lint: "eslint 'src/**/*.{ts,tsx}' --report-unused-disable-directives --max-warnings 0",
+            "lint:eslint":
+                "eslint 'src/**/*.{ts,tsx}' --report-unused-disable-directives --max-warnings 0",
         },
         large: {
-            lint: "eslint 'src/**/*.{ts,tsx}' --report-unused-disable-directives --max-warnings 0",
+            "lint:eslint":
+                "eslint 'src/**/*.{ts,tsx}' --report-unused-disable-directives --max-warnings 0",
         },
     },
 } as const;
