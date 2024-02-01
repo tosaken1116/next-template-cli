@@ -208,18 +208,17 @@ async function main() {
                 projectName = res.projectName.trim();
             }
         }
-        if (
-            process.argv.includes("--ts") ||
-            process.argv.includes("--no-js") ||
-            process.argv.includes("--recommend") ||
-            process.argv.includes("--moonshot")
-        ) {
+        if (process.argv.includes("--ts") || process.argv.includes("--no-js")) {
             options.typescript = true;
         } else if (
             process.argv.includes("--js") ||
             process.argv.includes("--no-ts")
         ) {
             options.typescript = false;
+        } else if (process.argv.includes("--recommend")) {
+            options.typescript = true;
+        } else if (process.argv.includes("--moonshot")) {
+            options.typescript = true;
         } else {
             const { typescript } = await prompts({
                 onState: onPromptState,
@@ -235,20 +234,18 @@ async function main() {
             options.uiLibrary = null;
         } else if (process.argv.includes("--chakra-ui")) {
             options.uiLibrary = "chakra-ui";
-        } else if (
-            process.argv.includes("--mui") ||
-            process.argv.includes("--recommend")
-        ) {
+        } else if (process.argv.includes("--mui")) {
             options.uiLibrary = "mui";
-        } else if (
-            process.argv.includes("--shadcn-ui") ||
-            process.argv.includes("--moonshot")
-        ) {
+        } else if (process.argv.includes("--shadcn-ui")) {
             options.uiLibrary = "shadcn-ui";
         } else if (process.argv.includes("--mantine-ui")) {
             options.uiLibrary = "mantine-ui";
         } else if (process.argv.includes("--yamada-ui")) {
             options.uiLibrary = "yamada-ui";
+        } else if (process.argv.includes("--recommend")) {
+            options.uiLibrary = "mui";
+        } else if (process.argv.includes("--moonshot")) {
+            options.uiLibrary = "shadcn-ui";
         } else {
             const { uiLibrary } = await prompts({
                 onState: onPromptState,
@@ -270,10 +267,7 @@ async function main() {
             }
         }
         if (options.uiLibrary === null) {
-            if (
-                process.argv.includes("--tailwind") ||
-                process.argv.includes("--recommend")
-            ) {
+            if (process.argv.includes("--tailwind")) {
                 options.tailwind = true;
             } else if (process.argv.includes("--no-tailwind")) {
                 options.tailwind = false;
@@ -289,14 +283,15 @@ async function main() {
                 options.tailwind = tailwind;
             }
         }
-        if (
-            process.argv.includes("--src-dir") ||
+        if (process.argv.includes("--src-dir")) {
+            options.srcDir = true;
+        } else if (process.argv.includes("--no-src-dir")) {
+            options.srcDir = false;
+        } else if (
             process.argv.includes("--recommend") ||
             process.argv.includes("--moonshot")
         ) {
             options.srcDir = true;
-        } else if (process.argv.includes("--no-src-dir")) {
-            options.srcDir = false;
         } else {
             const { srcDir } = await prompts({
                 onState: onPromptState,
@@ -310,9 +305,7 @@ async function main() {
         }
         if (
             process.argv.includes("--app") ||
-            process.argv.includes("--no-pages") ||
-            process.argv.includes("--recommend") ||
-            process.argv.includes("--moonshot")
+            process.argv.includes("--no-pages")
         ) {
             options.appRouter = true;
         } else if (
@@ -320,6 +313,10 @@ async function main() {
             process.argv.includes("--pages")
         ) {
             options.appRouter = false;
+        } else if (process.argv.includes("--recommend")) {
+            options.appRouter = false;
+        } else if (process.argv.includes("--moonshot")) {
+            options.appRouter = true;
         } else {
             const { appRouter } = await prompts({
                 onState: onPromptState,
@@ -334,8 +331,7 @@ async function main() {
 
         if (
             typeof options.importAlias !== "string" ||
-            (!options.importAlias.length &&
-                !process.argv.includes("--recommend"))
+            !options.importAlias.length
         ) {
             async () => {
                 const { needImportAlias } = await prompts({
@@ -364,15 +360,13 @@ async function main() {
         }
         if (process.argv.includes("--no-lint")) {
             options.lintTool = null;
-        } else if (
-            process.argv.includes("--eslint") ||
-            process.argv.includes("--recommend")
-        ) {
+        } else if (process.argv.includes("--eslint")) {
             options.lintTool = "eslint";
-        } else if (
-            process.argv.includes("--biome") ||
-            process.argv.includes("--moonshot")
-        ) {
+        } else if (process.argv.includes("--biome")) {
+            options.lintTool = "biome";
+        } else if (process.argv.includes("--recommend")) {
+            options.lintTool = "eslint";
+        } else if (process.argv.includes("--moonshot")) {
             options.lintTool = "biome";
         } else {
             const { lintTool } = await prompts({
@@ -388,14 +382,14 @@ async function main() {
             });
             options.lintTool = lintTool;
         }
-        if (
-            process.argv.includes("--storybook") ||
-            process.argv.includes("--recommend") ||
-            process.argv.includes("--moonshot")
-        ) {
+        if (process.argv.includes("--storybook")) {
             options.needStorybook = true;
         } else if (process.argv.includes("--no-storybook")) {
             options.needStorybook = false;
+        } else if (process.argv.includes("--recommend")) {
+            options.needStorybook = true;
+        } else if (process.argv.includes("--moonshot")) {
+            options.needStorybook = true;
         } else {
             const { needStorybook } = await prompts({
                 onState: onPromptState,
@@ -409,15 +403,13 @@ async function main() {
         }
         if (process.argv.includes("--no-test")) {
             options.testTool = null;
-        } else if (
-            process.argv.includes("--jest") ||
-            process.argv.includes("--recommend")
-        ) {
+        } else if (process.argv.includes("--jest")) {
             options.testTool = "jest";
-        } else if (
-            process.argv.includes("--vitest") ||
-            process.argv.includes("--moonshot")
-        ) {
+        } else if (process.argv.includes("--vitest")) {
+            options.testTool = "vitest";
+        } else if (process.argv.includes("--recommend")) {
+            options.testTool = "jest";
+        } else if (process.argv.includes("--moonshot")) {
             options.testTool = "vitest";
         } else {
             const { testTool } = await prompts({
@@ -435,15 +427,13 @@ async function main() {
         }
         if (process.argv.includes("--no-gen")) {
             options.genTool = null;
-        } else if (
-            process.argv.includes("--hygen") ||
-            process.argv.includes("--recommend")
-        ) {
+        } else if (process.argv.includes("--hygen")) {
             options.genTool = "hygen";
-        } else if (
-            process.argv.includes("--scaffdog") ||
-            process.argv.includes("--moonshot")
-        ) {
+        } else if (process.argv.includes("--scaffdog")) {
+            options.genTool = "scaffdog";
+        } else if (process.argv.includes("--recommend")) {
+            options.genTool = "hygen";
+        } else if (process.argv.includes("--moonshot")) {
             options.genTool = "scaffdog";
         } else {
             const { genTool } = await prompts({
@@ -467,6 +457,10 @@ async function main() {
             options.projectSize = "medium";
         } else if (process.argv.includes("--large")) {
             options.projectSize = "large";
+        } else if (process.argv.includes("--recommend")) {
+            options.projectSize = "medium";
+        } else if (process.argv.includes("--moonshot")) {
+            options.projectSize = "large";
         } else {
             const { projectSize } = await prompts({
                 onState: onPromptState,
@@ -485,15 +479,13 @@ async function main() {
             options.packageTool = "npm";
         } else if (process.argv.includes("--yarn")) {
             options.packageTool = "yarn";
-        } else if (
-            process.argv.includes("--pnpm") ||
-            process.argv.includes("--recommend")
-        ) {
+        } else if (process.argv.includes("--pnpm")) {
             options.packageTool = "pnpm";
-        } else if (
-            process.argv.includes("--bun") ||
-            process.argv.includes("--moonshot")
-        ) {
+        } else if (process.argv.includes("--bun")) {
+            options.packageTool = "bun";
+        } else if (process.argv.includes("--recommend")) {
+            options.packageTool = "pnpm";
+        } else if (process.argv.includes("--moonshot")) {
             options.packageTool = "bun";
         } else {
             const { packageTool } = await prompts({
@@ -510,11 +502,7 @@ async function main() {
             });
             options.packageTool = packageTool;
         }
-        if (
-            process.argv.includes("--all-actions") ||
-            process.argv.includes("--recommend") ||
-            process.argv.includes("--moonshot")
-        ) {
+        if (process.argv.includes("--all-actions")) {
             options.workflows = [
                 "lighthouse",
                 "code-diff",
@@ -544,6 +532,24 @@ async function main() {
             options.workflows = workflows;
         } else if (process.argv.includes("--no-github-actions")) {
             options.workflows = [];
+        } else if (process.argv.includes("--recommend")) {
+            options.workflows = [
+                "lighthouse",
+                "code-diff",
+                "lint",
+                "test",
+                "bundle-size",
+                "useless-modules",
+            ];
+        } else if (process.argv.includes("--moonshot")) {
+            options.workflows = [
+                "lighthouse",
+                "code-diff",
+                "lint",
+                "test",
+                "bundle-size",
+                "useless-modules",
+            ];
         } else {
             const { needWorkflow } = await prompts({
                 onState: onPromptState,

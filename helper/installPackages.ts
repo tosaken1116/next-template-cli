@@ -1,5 +1,6 @@
 import { PackageManager } from "../types";
 import { exec } from "./exec";
+import { getInstallCommand } from "./packageManager";
 
 export const installPackages = async (
     packages: { depend: string[]; devDepend: string[] },
@@ -10,18 +11,18 @@ export const installPackages = async (
         return;
     }
     const commands = [
-        `${
-            packages.devDepend
-                ? [packageManager, "install", "-D", ...packages.devDepend].join(
-                      " "
-                  )
-                : ""
-        }`,
-        `${
-            packages.depend
-                ? [packageManager, "install", ...packages.depend].join(" ")
-                : ""
-        }`,
+        packages.devDepend.length !== 0
+            ? `${getInstallCommand(
+                  packageManager,
+                  true
+              )} ${packages.devDepend.join(" ")}`
+            : "",
+        packages.depend.length !== 0
+            ? `${getInstallCommand(
+                  packageManager,
+                  false
+              )} ${packages.depend.join(" ")}`
+            : "",
     ].filter((command) => command != "");
     const command = commands.join(" && ");
     await exec(command, {

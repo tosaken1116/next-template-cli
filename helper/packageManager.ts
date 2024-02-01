@@ -9,3 +9,13 @@ export const getRunCommand = (packageManager: PackageManager) => {
     }
     return "npm run";
 };
+
+export const getInstallCommand = (
+    packageManager: PackageManager,
+    isDevDepend: boolean = false
+) => {
+    if (packageManager === "yarn" || packageManager === "pnpm") {
+        return `${packageManager} add${isDevDepend ? "  -D" : ""}`;
+    }
+    return `${packageManager} install${isDevDepend ? " -D" : ""}`;
+};
