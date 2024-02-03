@@ -26,6 +26,7 @@ export const getEditContents = (
         }),
         uiLibraryOperator(config.uiLibrary, config),
         sizeOperator(config.size),
+        otherToolOperator(config.otherTools, config.lintTool, config),
     ].reduce(
         (acc, cur) => {
             return {

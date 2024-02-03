@@ -385,6 +385,58 @@ async function main() {
             });
             options.lintTool = lintTool;
         }
+        options.otherTools = [];
+        if (process.argv.includes("--all-other-tool")) {
+            options.otherTools = ["stylelint", "markuplint", "lint-staged"];
+        } else if (process.argv.includes("--no-other-tool")) {
+            options.otherTools = [];
+        } else if (process.argv.includes("--stylelint")) {
+            options.otherTools.push("stylelint");
+        } else if (process.argv.includes("--markuplint")) {
+            options.otherTools.push("markuplint");
+        } else if (process.argv.includes("--lint-staged")) {
+            options.otherTools.push("lint-staged");
+        } else if (
+            process.argv.includes("--recommend") ||
+            process.argv.includes("--moonshot")
+        ) {
+            options.otherTools = ["stylelint", "markuplint", "lint-staged"];
+        }
+
+        if (
+            process.argv.filter((arg) =>
+                ["--stylelint", "--markuplint", "--lint-staged"].includes(arg)
+            ).length !== 3 &&
+            !process.argv.includes("--recommend") &&
+            !process.argv.includes("--moonshot") &&
+            !process.argv.includes("--all-other-tool") &&
+            !process.argv.includes("--no-other-tool")
+        ) {
+            const { otherTools } = await prompts({
+                onState: onPromptState,
+                type: "multiselect",
+                name: "otherTools",
+                message: `Which ${blue("other tool")} would you like to use?`,
+                choices: [
+                    {
+                        title: "stylelint",
+                        value: "stylelint",
+                        selected: process.argv.includes("--stylelint"),
+                    },
+                    {
+                        title: "markuplint",
+                        value: "markuplint",
+                        selected: process.argv.includes("--markuplint"),
+                    },
+                    {
+                        title: "lint-staged",
+                        value: "lint-staged",
+                        selected: process.argv.includes("--lint-staged"),
+                    },
+                ],
+            });
+            options.otherTools = otherTools;
+        }
         if (process.argv.includes("--storybook")) {
             options.needStorybook = true;
         } else if (process.argv.includes("--no-storybook")) {
@@ -635,6 +687,7 @@ async function main() {
             isSrcDir: options.srcDir,
             workflows: options.workflows,
             uiLibrary: options.uiLibrary,
+            otherTools: options.otherTools,
         });
         console.log(green("Done!"));
         console.log(`create Next.js app ${blue(projectName)}`);

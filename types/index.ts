@@ -1,4 +1,5 @@
 export type LintTool = "eslint" | "biome" | null;
+export type OtherTool = "stylelint" | "markuplint" | "lint-staged";
 export type GenTool = "hygen" | "scaffdog" | null;
 export type TestTool = "jest" | "vitest" | null;
 export type StoryTool = "storybook" | null;
@@ -45,6 +46,7 @@ export type GenerateConfigType = {
     isSrcDir: boolean;
     workflows: Workflows[];
     uiLibrary: UiLibrary;
+    otherTools: OtherTool[];
 };
 export type RewriteFiles = {
     path: string;
