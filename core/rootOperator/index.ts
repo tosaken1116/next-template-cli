@@ -9,6 +9,8 @@ import { dirOperator } from "../dirOperator";
 import { objectMergeDeep } from "../../helper/mergeObject";
 import { uiLibraryOperator } from "../uiLibraryOperator";
 import { sizeOperator } from "../sizeOperator";
+import { otherToolOperator } from "../otherToolOperator";
+import { defaultDevDependencies, defaultScripts } from "./constant";
 
 export const getEditContents = (
     config: GenerateConfigType
@@ -45,8 +47,8 @@ export const getEditContents = (
         },
         {
             dependencies: [],
-            devDependencies: [],
-            packageJson: {},
+            devDependencies: defaultDevDependencies,
+            packageJson: { scripts: defaultScripts },
             rewriteFiles: [],
             copyFiles: [],
             writeFiles: [],
