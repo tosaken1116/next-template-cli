@@ -3,29 +3,29 @@ name: "page"
 root: "src"
 output: "."
 questions:
-    name: "page name"
-    page_path: "page path(http://localhost:3000/)"
+  name: "page name"
+  page_path: "page path(http://localhost:3000/)"
 ---
 
 # Variables
 
--   name: `{{ inputs.name | pascal }}`
+- name: `{{ inputs.name | pascal }}`
 
-# `app/{{ page_path }}/page.jsx`
+# `app/{{ inputs.page_path }}/page.jsx`
 
 ```jsx
 import { Screen } from '@/components/page/{{name}}'
 
-const <%= name %> = () => <Screen />;
+const {{ name }} = () => <Screen />;
 
-export default <%= name %>;
+export default {{ name }};
 ```
 
 # `components/page/{{name}}/index.jsx`
 
 ```jsx
 export const Screen = () => {
-    return <>this is page of {{ name }} </>;
+  return <>this is page of {{ name }} </>;
 };
 ```
 

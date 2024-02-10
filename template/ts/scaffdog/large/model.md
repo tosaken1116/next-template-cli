@@ -1,30 +1,31 @@
 ---
 name: "model"
-root: "src/components/domains/${inputs.domain | pascal }/components"
+root: "src/components/domains"
 output: "."
 questions:
-    name: "component name"
-    domain: "What domain do you want to generate?"
-    have_props:
-        confirm: "Do you have props?"
-        initial: false
-    have_hooks:
-        confirm: "Do you have hooks?"
-        initial: false
-    gen_files:
-        message: "What files do you want to generate?"
-        multiple: true
-        choices:
-            - "Empty"
-            - "Loading"
-            - "Error"
+  name: "component name"
+  domain: "What domain do you want to generate?"
+  have_props:
+    confirm: "Do you have props?"
+    initial: false
+  have_hooks:
+    confirm: "Do you have hooks?"
+    initial: false
+  gen_files:
+    message: "What files do you want to generate?"
+    multiple: true
+    choices:
+      - "Empty"
+      - "Loading"
+      - "Error"
 ---
 
 # Variables
 
--   name: `{{ inputs.name | pascal }}`
+- name: `{{ inputs.name | pascal }}`
+- domain: `{{ inputs.domain | pascal }}`
 
-# `{{ name }}/index.tsx`
+# `{{ domain }}/components/{{ name }}/index.tsx`
 
 ```tsx
 import type { FC } from 'react';
@@ -45,7 +46,7 @@ export const {{ name }}: FC{{inputs.have_props||"<Props>"}} = ({{inputs.have_pro
 
 ```
 
-# `{{ name }}/container.tsx`
+# `{{ domain }}/components/{{ name }}/container.tsx`
 
 ```tsx
 {{inputs.have_hooks&&("import { use" + name + " } from './hooks'")}}
@@ -58,7 +59,7 @@ export const {{name}}Container = ()=>{
 }
 ```
 
-# `{{include(inputs.gen_files,"Empty")}}{{ name }}/presentations/empty.tsx`
+# `{{ domain }}/components/{{include(inputs.gen_files,"Empty")}}{{ name }}/presentations/empty.tsx`
 
 ```tsx
 import type { FC } from 'react';
@@ -68,7 +69,7 @@ export const {{ name }}EmptyPresentation:FC = () => {
 };
 ```
 
-# `{{include(inputs.gen_files,"Loading")}}{{ name }}/presentations/loading.tsx`
+# `{{ domain }}/components/{{include(inputs.gen_files,"Loading")}}{{ name }}/presentations/loading.tsx`
 
 ```tsx
 import type { FC } from 'react';
@@ -78,7 +79,7 @@ export const {{ name }}LoadingPresentation:FC = () => {
 };
 ```
 
-# `{{ include(inputs.gen_files,"Error") || "!" }}{{ name }}/presentations/error.tsx`
+# `{{ domain }}/components/{{ include(inputs.gen_files,"Error") || "!" }}{{ name }}/presentations/error.tsx`
 
 ```tsx
 import type { FC } from 'react';
@@ -88,7 +89,7 @@ export const {{ name }}ErrorPresentation:FC = () => {
 };
 ```
 
-# `{{ inputs.have_hooks || "!" }}{{ name }}/hooks/index.ts`
+# `{{ domain }}/components/{{ inputs.have_hooks || "!" }}{{ name }}/hooks/index.ts`
 
 ```ts
 import { useState } from 'react';
@@ -106,7 +107,7 @@ export const use{{ name }} = ():IUse{{ name }} => {
 };
 ```
 
-# `{{name}}/presentations/index.tsx`
+# `{{ domain }}/components/{{name}}/presentations/index.tsx`
 
 ```tsx
 import type { FC } from 'react';
@@ -117,7 +118,7 @@ export const {{ name }}Presentation: FC = () => (
 
 ```
 
-# `{{ name }}/index.stories.tsx`
+# `{{ domain }}/components/{{ name }}/index.stories.tsx`
 
 ```tsx
 import { {{ name }} } from '.';
@@ -142,7 +143,7 @@ export const Default: Story = {
 
 ```
 
-# `{{ name }}/index.test.tsx`
+# `{{ domain }}/components/{{ name }}/index.test.tsx`
 
 ```tsx
 import { render, screen } from "@testing-library/react";
