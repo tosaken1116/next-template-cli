@@ -1,55 +1,55 @@
 {
-    "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:react/recommended",
-        "prettier"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "plugins": ["react", "@typescript-eslint"],
-    "rules": {
-        "@typescript-eslint/explicit-function-return-type": [
-            "warn",
-            { "allowExpressions": true }
-        ],
-        "arrow-body-style": ["error", "as-needed"],
-        "prefer-template": "error",
-        "prefer-arrow-callback": ["error", { "allowNamedFunctions": true }],
-        "unused-imports/no-unused-imports": "error",
-        "react/jsx-boolean-value": ["error", "always"],
-        "react/jsx-curly-brace-presence": ["error", "never"],
-        "react/self-closing-comp": "error",
-        "@typescript-eslint/naming-convention": [
-            "error",
-            {
-                "selector": "typeLike",
-                "format": ["PascalCase"]
-            }
-        ],
-        "padding-line-between-statements": [
-            "error",
-            { "blankLine": "always", "prev": "*", "next": "return" }
-        ],
-        "react/jsx-filename-extension": [
-            "error",
-            {
-                "extensions": ["tsx"]
-            }
-        ],
-        "react/function-component-definition": [
-            "error",
-            {
-                "namedComponents": "function-declaration",
-                "unnamedComponents": "function-expression"
-            }
-        ],
-        "import/order": [
-            "error",
-            {
-                "groups": ["builtin", "external", "parent", "sibling", "index"],
-                "newlines-between": "always"
-            }
-        ],
-        "@typescript-eslint/consistent-type-imports": "error"
-    }
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:react/recommended",
+		"prettier"
+	],
+	"parser": "@typescript-eslint/parser",
+	"plugins": ["react", "@typescript-eslint"],
+	"rules": {
+		"@typescript-eslint/explicit-function-return-type": [
+			"warn",
+			{ "allowExpressions": true }
+		],
+		"arrow-body-style": ["error", "as-needed"],
+		"prefer-template": "error",
+		"prefer-arrow-callback": ["error", { "allowNamedFunctions": true }],
+		"unused-imports/no-unused-imports": "error",
+		"react/jsx-boolean-value": ["error", "always"],
+		"react/jsx-curly-brace-presence": ["error", "never"],
+		"react/self-closing-comp": "error",
+		"@typescript-eslint/naming-convention": [
+			"error",
+			{
+				"selector": "typeLike",
+				"format": ["PascalCase"]
+			}
+		],
+		"padding-line-between-statements": [
+			"error",
+			{ "blankLine": "always", "prev": "*", "next": "return" }
+		],
+		"react/jsx-filename-extension": [
+			"error",
+			{
+				"extensions": ["tsx"]
+			}
+		],
+		"react/function-component-definition": [
+			"error",
+			{
+				"namedComponents": "function-declaration",
+				"unnamedComponents": "function-expression"
+			}
+		],
+		"import/order": [
+			"error",
+			{
+				"groups": ["builtin", "external", "parent", "sibling", "index"],
+				"newlines-between": "always"
+			}
+		],
+		"@typescript-eslint/consistent-type-imports": "error"
+	}
 }

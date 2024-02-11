@@ -5,35 +5,35 @@ import { packages, scripts } from "./constant";
 import { type } from "os";
 
 export const testOperator = (
-    testTool: TestTool,
-    config: Pick<GenerateConfigType, "size" | "projectRoot" | "type">
+	testTool: TestTool,
+	config: Pick<GenerateConfigType, "size" | "projectRoot" | "type">,
 ): OperationResult => {
-    if (!testTool) {
-        return {
-            dependencies: [],
-            devDependencies: [],
-            packageJson: {},
-            rewriteFiles: [],
-            copyFiles: [],
-            writeFiles: [],
-            removeFiles: [],
-        };
-    }
-    const devDependencies = packages[testTool];
-    const addScripts = scripts[testTool][config.size];
-    const copyFiles = [
-        {
-            from: getTemplate({ type: config.type, tool: testTool }),
-            to: config.projectRoot,
-        },
-    ];
-    return {
-        dependencies: [],
-        devDependencies,
-        packageJson: { scripts: addScripts },
-        rewriteFiles: [],
-        copyFiles,
-        writeFiles: [],
-        removeFiles: [],
-    };
+	if (!testTool) {
+		return {
+			dependencies: [],
+			devDependencies: [],
+			packageJson: {},
+			rewriteFiles: [],
+			copyFiles: [],
+			writeFiles: [],
+			removeFiles: [],
+		};
+	}
+	const devDependencies = packages[testTool];
+	const addScripts = scripts[testTool][config.size];
+	const copyFiles = [
+		{
+			from: getTemplate({ type: config.type, tool: testTool }),
+			to: config.projectRoot,
+		},
+	];
+	return {
+		dependencies: [],
+		devDependencies,
+		packageJson: { scripts: addScripts },
+		rewriteFiles: [],
+		copyFiles,
+		writeFiles: [],
+		removeFiles: [],
+	};
 };

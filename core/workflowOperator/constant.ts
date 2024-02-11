@@ -1,80 +1,80 @@
 import { Actions, GenTool, Packages, Scripts, Workflows } from "../../types";
 
 export const scripts: Scripts<Workflows> = {
-    lighthouse: {
-        small: {},
-        medium: {},
-        large: {},
-    },
-    lint: {
-        small: {
-            "ci:lint": "npm-run-all lint:*",
-        },
-        medium: {
-            "ci:lint": "npm-run-all lint:*",
-        },
-        large: {
-            "ci:lint": "npm-run-all lint:*",
-        },
-    },
-    test: {
-        small: {
-            "ci:test": "npm-run-all test:*",
-        },
-        medium: {
-            "ci:test": "npm-run-all test:*",
-        },
-        large: {
-            "ci:test": "npm-run-all test:*",
-        },
-    },
-    "code-diff": {
-        small: {},
-        medium: {},
-        large: {},
-    },
-    "bundle-size": {
-        small: {},
-        medium: {},
-        large: {},
-    },
-    "install-dependencies": {
-        small: {},
-        medium: {},
-        large: {},
-    },
-    build: {
-        small: {},
-        medium: {},
-        large: {},
-    },
-    "useless-modules": {
-        small: {},
-        medium: {},
-        large: {},
-    },
+	lighthouse: {
+		small: {},
+		medium: {},
+		large: {},
+	},
+	lint: {
+		small: {
+			"ci:lint": "npm-run-all lint:*",
+		},
+		medium: {
+			"ci:lint": "npm-run-all lint:*",
+		},
+		large: {
+			"ci:lint": "npm-run-all lint:*",
+		},
+	},
+	test: {
+		small: {
+			"ci:test": "npm-run-all test:*",
+		},
+		medium: {
+			"ci:test": "npm-run-all test:*",
+		},
+		large: {
+			"ci:test": "npm-run-all test:*",
+		},
+	},
+	"code-diff": {
+		small: {},
+		medium: {},
+		large: {},
+	},
+	"bundle-size": {
+		small: {},
+		medium: {},
+		large: {},
+	},
+	"install-dependencies": {
+		small: {},
+		medium: {},
+		large: {},
+	},
+	build: {
+		small: {},
+		medium: {},
+		large: {},
+	},
+	"useless-modules": {
+		small: {},
+		medium: {},
+		large: {},
+	},
 } as const;
 
 export const needActionsPaths: Record<Workflows, Actions[]> = {
-    lighthouse: ["cache-build", "pull-request-comment"],
-    lint: [],
-    test: [],
-    "code-diff": ["pull-request-comment"],
-    "bundle-size": ["cache-build", "pull-request-comment"],
-    "install-dependencies": ["cache-module"],
-    build: ["cache-build"],
-    "useless-modules": ["pull-request-comment"],
+	lighthouse: ["cache-build", "pull-request-comment"],
+	lint: [],
+	test: [],
+	"code-diff": ["pull-request-comment"],
+	"bundle-size": ["cache-build", "pull-request-comment"],
+	"install-dependencies": ["cache-module"],
+	build: ["cache-build"],
+	"useless-modules": ["pull-request-comment"],
 } as const;
 
 export const workflowDependencies: Record<Workflows, Workflows[]> = {
-    lighthouse: ["build"],
-    lint: ["install-dependencies"],
-    test: ["install-dependencies"],
-    "code-diff": [],
-    "bundle-size": ["build"],
-    "install-dependencies": [],
-    build: ["install-dependencies"],
-    "useless-modules": ["install-dependencies"],
+	lighthouse: ["build"],
+	lint: ["install-dependencies"],
+	test: ["install-dependencies"],
+	"code-diff": [],
+	"bundle-size": ["build"],
+	"install-dependencies": [],
+	build: ["install-dependencies"],
+	"useless-modules": ["install-dependencies"],
 } as const;
 
 export const WORKFLOW_BASE = `
@@ -321,12 +321,12 @@ export const USELESS_MODULES = `  report-useless-modules:
             comment-body: \${{steps.useless-modules-comment.outputs.body}}
 `;
 export const workflowContents: Record<Workflows, string> = {
-    lighthouse: LIGHT_HOUSE,
-    lint: LINT,
-    test: TEST,
-    "code-diff": CODE_DIFF,
-    "bundle-size": BUNDLE_ANALYZE,
-    "install-dependencies": INSTALL_DEPENDENCIES,
-    build: BUILD,
-    "useless-modules": USELESS_MODULES,
+	lighthouse: LIGHT_HOUSE,
+	lint: LINT,
+	test: TEST,
+	"code-diff": CODE_DIFF,
+	"bundle-size": BUNDLE_ANALYZE,
+	"install-dependencies": INSTALL_DEPENDENCIES,
+	build: BUILD,
+	"useless-modules": USELESS_MODULES,
 } as const;

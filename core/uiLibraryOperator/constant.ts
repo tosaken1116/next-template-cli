@@ -1,23 +1,23 @@
 import { LintTool, ProjectSize, UiLibrary } from "../../types";
 
 export const packages: Record<NonNullable<UiLibrary>, string[]> = {
-    "shadcn-ui": [
-        "lucide-react",
-        "tailwindcss-animate",
-        "class-variance-authority",
-        "clsx",
-        "tailwind-merge",
-    ],
-    "chakra-ui": [
-        "@chakra-ui/react",
-        "@chakra-ui/next-js",
-        "@emotion/react",
-        "@emotion/styled",
-        "framer-motion",
-    ],
-    mui: ["@mui/material", "@emotion/react", "@emotion/styled"],
-    "yamada-ui": ["@yamada-ui/react"],
-    "mantine-ui": ["@mantine/core", "@mantine/hooks"],
+	"shadcn-ui": [
+		"lucide-react",
+		"tailwindcss-animate",
+		"class-variance-authority",
+		"clsx",
+		"tailwind-merge",
+	],
+	"chakra-ui": [
+		"@chakra-ui/react",
+		"@chakra-ui/next-js",
+		"@emotion/react",
+		"@emotion/styled",
+		"framer-motion",
+	],
+	mui: ["@mui/material", "@emotion/react", "@emotion/styled"],
+	"yamada-ui": ["@yamada-ui/react"],
+	"mantine-ui": ["@mantine/core", "@mantine/hooks"],
 } as const;
 
 export const SHADCN_CN = `import { clsx, type ClassValue } from "clsx"
@@ -210,25 +210,25 @@ export const SHADCN_CONFIG = `{
   }`;
 
 type NeedProviderUiLibrary = NonNullable<
-    Exclude<UiLibrary, "mui" | "shadcn-ui">
+	Exclude<UiLibrary, "mui" | "shadcn-ui">
 >;
 const providerPackages: Record<
-    NeedProviderUiLibrary,
-    {
-        provider: string;
-        packageName: string;
-    }
+	NeedProviderUiLibrary,
+	{
+		provider: string;
+		packageName: string;
+	}
 > = {
-    "chakra-ui": {
-        provider: "ChakraProvider",
-        packageName: "@chakra-ui/react",
-    },
-    "mantine-ui": { provider: "MantineProvider", packageName: "@mantine/core" },
-    "yamada-ui": { provider: "UIProvider", packageName: "@yamada-ui/react" },
+	"chakra-ui": {
+		provider: "ChakraProvider",
+		packageName: "@chakra-ui/react",
+	},
+	"mantine-ui": { provider: "MantineProvider", packageName: "@mantine/core" },
+	"yamada-ui": { provider: "UIProvider", packageName: "@yamada-ui/react" },
 } as const;
 export const PROVIDER = (uiLibrary: NeedProviderUiLibrary) => {
-    const { provider, packageName } = providerPackages[uiLibrary];
-    return `'use client'
+	const { provider, packageName } = providerPackages[uiLibrary];
+	return `'use client'
 
 import { ${provider} } from '${packageName}'
 
@@ -238,6 +238,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
 };
 
 export const TS_SYNTAXES = [
-    "'use client'\n\n",
-    ": { children: React.ReactNode }",
+	"'use client'\n\n",
+	": { children: React.ReactNode }",
 ];
