@@ -1,6 +1,6 @@
 ---
 name: "page"
-root: "src"
+root: "."
 output: "."
 questions:
   name: "page name"
@@ -11,7 +11,7 @@ questions:
 
 - name: `{{ inputs.name | pascal }}`
 
-# `app/{{ inputs.page_path }}/page.jsx`
+# `src/app/{{ inputs.page_path }}/page.jsx`
 
 ```jsx
 import { Screen } from '@/components/page/{{name}}'
@@ -21,7 +21,7 @@ const {{ name }} = () => <Screen />;
 export default {{ name }};
 ```
 
-# `components/page/{{name}}/index.jsx`
+# `src/components/page/{{name}}/index.jsx`
 
 ```jsx
 export const Screen = () => {
@@ -29,7 +29,7 @@ export const Screen = () => {
 };
 ```
 
-# `components/page/{{name}}/index.stories.jsx`
+# `src/components/page/{{name}}/index.stories.jsx`
 
 ```jsx
 

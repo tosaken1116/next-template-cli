@@ -1,6 +1,6 @@
 ---
 name: "page"
-root: "src"
+root: "."
 output: "."
 questions:
   name: "page name"
@@ -11,7 +11,7 @@ questions:
 
 - name: `{{ inputs.name | pascal }}`
 
-# `app/{{ inputs.page_path }}/page.tsx`
+# `src/app/{{ inputs.page_path }}/page.tsx`
 
 ```tsx
 import type { FC } from 'react';
@@ -22,7 +22,7 @@ const {{ name }}:FC = () => <Screen />;
 export default {{ name }};
 ```
 
-# `components/page/{{name}}/index.tsx`
+# `src/components/page/{{name}}/index.tsx`
 
 ```tsx
 import type { FC } from "react";
@@ -31,7 +31,7 @@ export const Screen: FC = () => {
 };
 ```
 
-# `components/page/{{name}}/index.stories.tsx`
+# `src/components/page/{{name}}/index.stories.tsx`
 
 ```tsx
 
