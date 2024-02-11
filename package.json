@@ -8,7 +8,8 @@
   "scripts": {
     "start": "node dist/index.js",
     "dev": "rm -rf dist/template && cp -r template dist/template && ncc build ./index.ts -w -o dist",
-    "build": "rm -rf dist && ncc build index.ts --minify -o ./dist/ --minify --no-cache --no-source-map-register && cp -r template dist/template && cp README.md ./dist/README.md "
+    "build": "rm -rf dist && ncc build index.ts --minify -o ./dist/ --minify --no-cache --no-source-map-register && cp -r template dist/template && cp README.md ./dist/README.md ",
+    "format": "biome format --write --no-errors-on-unmatched ."
   },
   "files": [
     "dist"
@@ -32,6 +33,7 @@
   "type": "module",
   "license": "MIT",
   "devDependencies": {
+    "@biomejs/biome": "^1.5.3",
     "@types/node": "^20.10.7",
     "@types/prompts": "^2.4.9",
     "@vercel/ncc": "^0.38.1",
