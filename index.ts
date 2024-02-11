@@ -326,9 +326,23 @@ async function main() {
 			options.appRouter = appRouter;
 		}
 		if (
+			(process.argv.includes("--moonshot") ||
+				process.argv.includes("--recommend")) &&
+			options.importAlias === undefined
+		) {
+			options.importAlias = "@";
+		} else if (
+			typeof options.importAlias === "string" &&
+			options.importAlias !== undefined &&
+			options.importAlias.match(/(.+)\/\*/) !== null
+		) {
+			const match = options.importAlias.match(/(.+)\/\*/);
+			if (match !== null) {
+				options.importAlias = match[1];
+			}
+		} else if (
 			typeof options.importAlias !== "string" ||
-			!options.importAlias.length ||
-			!options.importAlias
+			!options.importAlias.length
 		) {
 			await (async () => {
 				const { needImportAlias } = await prompts({
@@ -354,8 +368,6 @@ async function main() {
 				const match = importAlias.match(/(.+)\/\*/);
 				options.importAlias = match ? match[1] : "@";
 			})();
-		} else {
-			options.importAlias = options.importAlias;
 		}
 		if (process.argv.includes("--no-lint")) {
 			options.lintTool = null;
