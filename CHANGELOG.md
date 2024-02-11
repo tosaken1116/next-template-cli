@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.30](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.29...create-template-next-v0.0.30) (2024-02-11)
+
+
+### Bug Fixes
+
+* biome lint command ([8981f8f](https://github.com/tosaken1116/next-template-cli/commit/8981f8fe0a8a66434b44777bc8bdfbe1fcd4ada4))
+* no custom import alias to recommend and moonshot option ([86ab036](https://github.com/tosaken1116/next-template-cli/commit/86ab0367d5c357ee9fe1593fe01a9ab52a1299e6))
+
 ## [0.0.29](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.28...create-template-next-v0.0.29) (2024-02-11)
 
 
