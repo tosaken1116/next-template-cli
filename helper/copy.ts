@@ -19,7 +19,7 @@ export const copyFiles = async (srcDir: string, to: string) => {
 	// ソースディレクトリのファイル/ディレクトリ一覧を取得
 	const entries = readdirSync(srcDir, { withFileTypes: true });
 
-	for (let entry of entries) {
+	for (const entry of entries) {
 		const srcPath = path.join(srcDir, entry.name);
 		const dstPath = path.join(to, entry.name);
 

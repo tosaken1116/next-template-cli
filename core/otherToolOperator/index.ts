@@ -24,11 +24,9 @@ export const otherToolOperator = (
 			removeFiles: [],
 		};
 	}
-	const devDependencies = otherTools
-		.map((tool) => {
-			return packages[tool];
-		})
-		.flat();
+	const devDependencies = otherTools.flatMap((tool) => {
+		return packages[tool];
+	});
 	const writeFiles: WriteFiles = [
 		...(otherTools.includes("lint-staged")
 			? [

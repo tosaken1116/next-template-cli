@@ -2,7 +2,7 @@ import { readdirSync, statSync } from "fs";
 import path from "path";
 
 export const getAllFiles = (dirPath: string): string[] => {
-	let files: string[] = [];
+	const files: string[] = [];
 
 	const getFilesRecursively = (dir: string) => {
 		const fileNames = readdirSync(dir);

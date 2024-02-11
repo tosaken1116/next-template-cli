@@ -37,11 +37,9 @@ export const workflowOperator = (
 		return scripts[workflow][config.size];
 	});
 	const resolvedWorkflows = resolveWorkflowDependencies(workflows);
-	const needActions = resolvedWorkflows
-		.map((workflow) => {
-			return needActionsPaths[workflow];
-		})
-		.flat();
+	const needActions = resolvedWorkflows.flatMap((workflow) => {
+		return needActionsPaths[workflow];
+	});
 	const copyFiles = needActions.map((needAction) => {
 		return {
 			from: getTemplate({

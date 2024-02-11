@@ -9,7 +9,9 @@
     "start": "node dist/index.js",
     "dev": "rm -rf dist/template && cp -r template dist/template && ncc build ./index.ts -w -o dist",
     "build": "rm -rf dist && ncc build index.ts --minify -o ./dist/ --minify --no-cache --no-source-map-register && cp -r template dist/template && cp README.md ./dist/README.md ",
-    "format": "biome format --write --no-errors-on-unmatched ."
+    "format:biome-format": "biome format --write --no-errors-on-unmatched .",
+    "format:biome-lint-apply": "biome lint --apply --no-errors-on-unmatched .",
+    "format": "run-p format:*"
   },
   "files": [
     "dist"
@@ -40,6 +42,7 @@
     "child_process": "^1.0.0",
     "commander": "^11.1.0",
     "glob": "^10.3.10",
+    "npm-run-all": "^4.1.5",
     "picocolors": "^1.0.0",
     "prompts": "^2.4.2",
     "typescript": "^5.3.3"

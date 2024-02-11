@@ -18,7 +18,7 @@ export const resolveWorkflowDependencies = (
 		if (!depend) {
 			return [workflow];
 		}
-		return [workflow, ...depend.map((depend) => dfs(depend)).flat()];
+		return [workflow, ...depend.flatMap((depend) => dfs(depend))];
 	};
-	return Array.from(new Set(workflow.map((workflow) => dfs(workflow)).flat()));
+	return Array.from(new Set(workflow.flatMap((workflow) => dfs(workflow))));
 };

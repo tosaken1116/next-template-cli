@@ -12,7 +12,7 @@ export const getRunCommand = (packageManager: PackageManager) => {
 
 export const getInstallCommand = (
 	packageManager: PackageManager,
-	isDevDepend: boolean = false,
+	isDevDepend = false,
 ) => {
 	if (packageManager === "yarn" || packageManager === "pnpm") {
 		return `${packageManager} add${isDevDepend ? "  -D" : ""}`;

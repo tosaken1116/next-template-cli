@@ -9,7 +9,7 @@ export const log = async (
 ) => {
 	let x = 0;
 
-	const interval = setInterval(function () {
+	const interval = setInterval(() => {
 		process.stdout.write("\r" + blue(chars[x++]) + " " + message);
 		x = x % chars.length;
 	}, delay);
