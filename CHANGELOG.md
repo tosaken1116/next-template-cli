@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.0.29](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.28...create-template-next-v0.0.29) (2024-02-11)
+
+
+### Features
+
+* add base scripts and devDependencies ([8688edb](https://github.com/tosaken1116/next-template-cli/commit/8688edb656b8ce2b3e0923f1fa52673d55c640e1))
+* add format scripts ([c521efa](https://github.com/tosaken1116/next-template-cli/commit/c521efaebd414741ec31430a2fd0fbab4858d6a5))
+* add install react-error-boundary ([82d9f69](https://github.com/tosaken1116/next-template-cli/commit/82d9f69aa51521949892caeb259dd9967c604e3b))
+* add other lint tool ([eaa07dc](https://github.com/tosaken1116/next-template-cli/commit/eaa07dc51ef55aa1c15f6bef1388ee909855b7d8))
+* support storybook import alias ([1669cd1](https://github.com/tosaken1116/next-template-cli/commit/1669cd11d7c0dd18959f99d06a2c45e860bdc512))
+
+
+### Bug Fixes
+
+* change eslint command ([e84b9d0](https://github.com/tosaken1116/next-template-cli/commit/e84b9d02b6b4f7aef0c88273ad976e1bea34e51a))
+* change global.css dir by pages or app ([453ca45](https://github.com/tosaken1116/next-template-cli/commit/453ca45ac3658817685cb2009e9031fb29373e3f))
+* change scaffdog small project script ([5d381b4](https://github.com/tosaken1116/next-template-cli/commit/5d381b4faf7b44f0348a73e232faab6bc5d60b0c))
+* generator tool generated path ([7ec02ab](https://github.com/tosaken1116/next-template-cli/commit/7ec02abb9229155f0baab652a5ba8ae94eb4f8db))
+* import alias config does not set ([4cd6758](https://github.com/tosaken1116/next-template-cli/commit/4cd675818a04292819cbca4426c804fed4f7254f))
+* scaffdog large template ([6d4bfb9](https://github.com/tosaken1116/next-template-cli/commit/6d4bfb962bb54303d20ad111df9090cc3988dee4))
+* scaffdog src support ([db5aa9f](https://github.com/tosaken1116/next-template-cli/commit/db5aa9f11221d46347c6fe0213b11e6fd9ee05ea))
+* shadcn ui libs extension ([13df2ef](https://github.com/tosaken1116/next-template-cli/commit/13df2efe319d4cf1e84d8199cbba7e7d906dcd60))
+
 ## [0.0.28](https://github.com/tosaken1116/next-template-cli/compare/create-template-next-v0.0.27...create-template-next-v0.0.28) (2024-02-01)
 
 
